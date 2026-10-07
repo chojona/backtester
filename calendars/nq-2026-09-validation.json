@@ -1,0 +1,87 @@
+{
+  "version": "nq-2026-09-14_25-v1",
+  "product": "NQ",
+  "timezone": "America/New_York",
+  "dates": {
+    "2026-09-14": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-15": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-16": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-17": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-18": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-21": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-22": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-23": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-24": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    },
+    "2026-09-25": {
+      "closed": false,
+      "eth_close": "17:00",
+      "rth_close": "16:00",
+      "breaks": []
+    }
+  },
+  "source_urls": [
+    "https://www.cmegroup.com/trading-hours.html",
+    "https://www.cmegroup.com/content/dam/cmegroup/notices/ser/2021/06/SER-8788.pdf",
+    "https://www.cmegroup.com/notices/electronic-trading/2021/06/20210621.html"
+  ],
+  "reviewed_at": "2026-10-05",
+  "status": "bounded source-reviewed schedule; real-data cross-check pending",
+  "source_files": [
+    {
+      "path": "sources/review.md",
+      "sha256": "71cca57ac069351182db1351f5a7a698df38b351ac51d5fe91669f7b23047920",
+      "kind": "authored source-review note"
+    }
+  ],
+  "notes": [
+    "Ten complete trading dates; no US holiday schedule in this range.",
+    "18:00 prior day\u201317:00 ET ETH; 09:30\u201316:00 ET RTH; weekends and daily maintenance closed.",
+    "Calendar is not an exchange-signed archive and does not certify unscheduled halts.",
+    "Expired constituents end at provider last-eligible timestamp, not the calendar session close."
+  ]
+}

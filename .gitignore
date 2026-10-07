@@ -1,0 +1,36 @@
+# Credentials and local configuration (the blank template is safe to publish).
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python environments, caches and build artifacts.
+.venv*
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Local research outputs and market data; commit only bundled synthetic fixtures.
+results/*
+!results/.gitkeep
+data/*
+!data/sample.csv
+!data/synthetic_NQ_1m.csv
+!data/synthetic_NQ_5m.csv
+
+# Operating-system and editor scratch files.
+.DS_Store
+._*
+*.swp
+*.swo
+*~
