@@ -445,3 +445,12 @@ def test_schema_availability_is_checked_before_download():
             schema={'statistics':dict(start='2026-09-14T00:00:00Z',end='2030-01-01T00:00:00Z')})
     metadata=SimpleNamespace(get_dataset_range=ranges,get_dataset_condition=lambda **kw:[])
     with pytest.raises(ValueError,match='statistics'):HistoricalGateway(SimpleNamespace(metadata=metadata)).metadata(request)
+
+
+def test_explicit_history_scope_accepts_only_quarterly_nq_outrights():
+    req=DownloadRequest(START,START+timedelta(days=28),symbols=('NQU6','NQZ6','NQH7'),stype_in='raw_symbol',schemas=('definition','ohlcv-1m'))
+    assert req.kwargs()['symbols']==['NQU6','NQZ6','NQH7']
+    assert req.kwargs()['stype_in']=='raw_symbol'
+    assert req.kwargs('definition')['start'].endswith('00:00+00:00')
+    with pytest.raises(ValueError,match='quarterly NQ outrights'):
+        DownloadRequest(START,START+timedelta(days=1),symbols=('NQU6-NQZ6',),stype_in='raw_symbol')

@@ -180,6 +180,8 @@ estimators need trades/quotes/depth and synchronization; they are deferred.
   --as-of 2026-01-04T23:05:00Z
 ```
 
+These commands print JSON to standard output; redirect it to a local file under
+`results/` to retain a report. The CLI accepts NQ, ES and GC with one-minute input.
 The second command reports only five completed fixture minutes. `--config` reuses
 the existing raw-input/calendar/roll configuration; `--tbpv-squared-threshold`
 optionally freezes a research cutoff. Output includes source hash, calendar source,
@@ -201,16 +203,16 @@ coverage and raw paired opens. Bar positivity is stricter here than in execution
 which permits negative futures prices. Back-adjusted-input provenance and revised
 historical bars cannot be inferred from price values alone.
 
-The exact next step once Databento access exists is this cost-estimate-only trial:
+The retained September 14–25, 2026 NQ acquisition passed independent raw-data,
+calendar-boundary, roll, arithmetic and causal-prefix checks. The
+[dated acceptance report](acceptance/databento-2026-10-07.md) records ten complete
+active sessions, 13,800 traded minutes and one roll. Early closes, DST transitions,
+TBPV and other instruments were not accepted by that trial. Provider-level and
+unscheduled-halt limitations remain explicit.
 
-```sh
-.venv/bin/python -m backtester download --provider databento --symbol NQ --schema ohlcv-1m \
-  --start 2026-09-13T22:00:00Z --end 2026-09-25T21:00:00Z --estimate-only
-```
-
-Then follow [DATABENTO.md](DATABENTO.md) for the explicitly authorized small download
-and its existing normalization/manual audit. Do not start with a large paid run.
-After provenance, coverage, calendar, timestamp and paired-roll audits pass, run:
+Follow [DATABENTO.md](DATABENTO.md) for new acquisition and audit steps, or
+[HISTORY.md](HISTORY.md) for full-history preparation. For a reviewed local dataset,
+replace `ID` with its acquisition identifier and run:
 
 ```sh
 .venv/bin/python -m backtester volatility \
@@ -226,5 +228,34 @@ reports at fixed cutoffs with truncated and future-perturbed copies; their recor
 must agree. Retain raw/normalized/report/config/calendar hashes and manual review
 notes. Investigate frequency sensitivity and source corrections without tuning
 parameters for attractive results. Repeat with licensed ES and GC data after dated
-calendar support is extended. No Databento market measurements have been validated
-by this implementation task.
+calendar support is extended. The existing bounded acceptance must not be
+extended to new periods or instruments without their own evidence.
+
+
+## Visual inspection
+
+`python -m backtester volatility-charts` provides an optional Matplotlib report;
+install `.[charts]` first. The command accepts the same data/config, raw-contract,
+cutoff and TBPV-threshold conventions as `volatility`, plus a required new `--output`
+directory. It writes separate comparison PNG/SVG plots, per-session OHLC/volume PNG/SVG
+exports, an offline HTML chart viewer, and measurement JSON with input hash and
+calendar source. The viewer provides raw 1/5/15-minute OHLC bars, synchronized
+volume, zoom, pan, hover values, and separate intraday measurement charts.
+The offline viewer bundles TradingView Lightweight Charts 5.1.0 with its Apache
+license, NOTICE, source metadata, and visible attribution. Price and volume share
+a resizable pane boundary. Intraday charts link time ranges and crosshairs;
+comparison charts link within their own group. Timeframe controls replace OHLC
+and volume data only; research indicators retain their defined sampling frequency.
+Complete 1,380-minute sessions contain 1,380/276/92 price and volume bars at
+1m/5m/15m respectively. Aggregation preserves total volume and excludes incomplete
+blocks and unknown bars. No new market data is fetched when switching intervals.
+No chart code executes network requests, trading, or model fitting.
+
+Only complete sessions enter the comparison figure. Details retain missing-return
+breaks and show observed RV separately when canonical RV is unavailable. Contract
+series are never visually joined. The profile panel uses the measurement layer's
+lagged reference set; the first session has no profile. RTH shading follows observed
+calendar-classified bars. The scalar measurements remain in log-return units in
+JSON; displays use bp² (`RV * 1e8`) and volatility percent (`sqrt(RV) * 100`). The
+report's coverage counts expose coarse sampling's omitted tails. Local data and
+chart reports remain ignored by Git.

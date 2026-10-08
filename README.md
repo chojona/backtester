@@ -1,22 +1,66 @@
-# Intraday futures quantitative research
+# Futures research backtester
 
 A causal, CSV-first intraday research engine for **NQ, MNQ, ES, MES, GC and MGC**, alongside the preserved daily example backtester. Python 3.12+; the core uses the standard library and Databento acquisition uses the official optional SDK. The objective is trustworthy event distributions, not fitted profitability.
 
-## Databento historical NQ
+## Project status
 
-The constituent-contract adapter, cost-gated download, deterministic normalization and dated trial calendar are implemented. Live validation remains pending an environment API key; no real event count is available. See [Databento setup and acceptance workflow](docs/DATABENTO.md).
+The intraday engine supports NQ, MNQ, ES, MES, GC and MGC. The separate
+realized-volatility and chart commands currently accept **NQ, ES and GC** and
+consume one-minute raw bars. Historical acquisition and the reviewed dated
+calendar currently support **NQ only**.
+
+The retained September 14–25, 2026 NQ trial passed an independent offline audit:
+ten complete active-contract sessions, 13,800 traded minutes and one volume roll.
+This acceptance covers the retained acquisition and measurement pipeline, not
+other dates, holiday/DST transitions, trading performance or forecasts. See the
+[dated acceptance report](docs/acceptance/databento-2026-10-07.md).
+
+Full-history preparation and approval-gated acquisition scripts are available;
+full-history normalization and acceptance remain pending. HAR/GARCH/ML forecasting,
+optimization and live trading are not implemented.
+
+## Setup
+
+From the repository root, use Python 3.12 or newer:
+
+```sh
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[test]"
+# Optional historical-data SDK and offline chart rendering:
+python -m pip install -e ".[databento,charts]"
+```
+
+The core has no third-party runtime dependencies. Optional extras pin pytest,
+Databento and Matplotlib; equivalent requirements files are included.
+`requirements-py312.lock` records the tested macOS Python 3.12 environment;
+`requirements-dev.lock` is the historical Python 3.9 baseline, not the current setup.
+On the original workstation, `.venv` points to `.venv-py312`; that symlink is local.
+
+## Documentation
+
+| Guide | Contents |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | Data, sessions, rolls, causal features, execution, risk and audit assumptions |
+| [Databento](docs/DATABENTO.md) | Credentials, cost gates, download, normalization and provider inspection |
+| [Realized volatility](docs/VOLATILITY.md) | Estimators, sampling, coverage, causal profiles and charts |
+| [NQ history](docs/HISTORY.md) | Metadata preparation, frozen plans, acquisition and outstanding acceptance work |
+| [Daily starter](docs/daily-starter.md) | Preserved daily moving-average example and its narrower scope |
+| [NQ acceptance](docs/acceptance/databento-2026-10-07.md) | Dated independent evidence and reproducibility commands |
 
 ## Commands
 
 ```sh
-cd ~/Desktop/Projects/backtester
-source .venv/bin/activate
-backtester validate-data data/NQ.csv --symbol NQ --interval 1
+backtester validate-data data/synthetic_NQ_1m.csv --symbol NQ --interval 1
 backtester run --strategy weekly-vwap-reaction-v1 --symbol NQ \
-  --data data/NQ.csv --interval 1 --config config/research.example.json
+  --data data/synthetic_NQ_1m.csv --interval 1 --config config/research.example.json
 backtester report RUN_ID
 python -m pytest -q
 ```
+
+Replace `RUN_ID` with the identifier printed by `run`. Commands assume the repository
+root as the working directory. `python -m backtester --help` shows the legacy daily
+help; use `python -m backtester SUBCOMMAND --help` for each newer command.
 
 `python -m backtester` accepts the same new subcommands if the console entry point is unavailable. The old daily command is preserved as `python -m backtester daily` and its original flags still work without a subcommand. Daily documentation is in `docs/daily-starter.md`.
 
@@ -52,16 +96,7 @@ Weekly VWAP reaction V1 records the first qualified range touch of the **prior c
 
 Each `results/RUN_ID/` contains metadata with data/code/timezone hashes, assumptions, features, event distributions, trades, orders, fills, rolls, data integrity and equity curves. Configured commissions, exchange fees, slippage, margin and thresholds in the example are illustrative; replace them with justified research inputs.
 
-Read `docs/ARCHITECTURE.md` for complete architecture, contract sources, session definitions, roll rules, execution/risk models, research-event definitions, reproducibility, and **Problems found**. The optional Databento historical adapter is implemented; real-data acceptance is pending. The engine includes no live trading, optimization, frontend or exact candle-derived volume-at-price.
-
-## Installing on another machine
-
-```sh
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e .
-python -m pip install -r requirements-dev.txt
-```
+Read `docs/ARCHITECTURE.md` for complete architecture, contract sources, session definitions, roll rules, execution/risk models, research-event definitions, reproducibility, and **Problems found**. The optional Databento adapter has bounded NQ acceptance as described above. Local interactive chart reports are available; there is no live trading, optimization, hosted application or exact candle-derived volume-at-price.
 
 ## Realized-volatility research
 
@@ -81,7 +116,9 @@ python -m backtester volatility --data data/synthetic_NQ_1m.csv --symbol NQ
 Commit source, tests, configuration templates, calendar references, documentation
 and the bundled synthetic fixtures. `.gitignore` excludes `.env` and its variants,
 Python environments, caches, build artifacts, generated reports and all other data.
-Keep licensed downloads and local research outputs outside Git.
+Keep licensed downloads and local research outputs outside Git. Detailed acceptance evidence JSON under
+`docs/acceptance/` is also ignored; the review notes and checker scripts remain
+publishable.
 
 Copy `.env.example` to `.env` for local credentials and set `chmod 600 .env`.
 The adapter reads `DATABENTO_API_KEY` from the process environment; it does not load
@@ -91,3 +128,36 @@ The adapter reads `DATABENTO_API_KEY` from the process environment; it does not 
 Before committing, review `git status --short` and `git diff --cached --stat`.
 The offline validation command is `python -m pytest -q` (live integration tests are
 excluded by default).
+
+
+## Charts from local data
+
+Install the optional plotting dependency with `python -m pip install -e ".[charts]"`.
+Then generate an offline report (use a new output directory for each run):
+
+```sh
+python -m backtester volatility-charts --symbol NQ \
+  --data data/normalized/databento/NQ/ID/bars.csv \
+  --config data/normalized/databento/NQ/ID/research-config.json \
+  --output results/volatility-charts-ID
+```
+
+Replace `ID` with a local acquisition ID; licensed files are not included in Git.
+For a bundled-data example, substitute `data/synthetic_NQ_1m.csv` and
+`config/research.example.json`.
+
+Open `results/volatility-charts-ID/index.html` in your browser. It compares completed
+sessions and lets you select raw 1m/5m/15m OHLC and volume, returns, cumulative
+variance and a profile based only on prior completed sessions. Zoom, pan and
+synchronized crosshairs are available. PNG and SVG exports are included.
+The viewer uses locally bundled TradingView Lightweight Charts 5.1.0, with
+candlesticks or OHLC bars, a resizable volume pane, linked crosshairs and time
+ranges, drag-to-pan, wheel zoom, and price-scale controls. The 1m/5m/15m buttons
+replace both price and volume bars; research indicators retain their defined
+sampling frequency. Each comparison chart is interactive and displayed separately.
+All assets are local; no market data is uploaded. Variance is shown in squared
+basis points; volatility is `sqrt(RV) * 100` percent, without annualization.
+Incomplete sessions and unsupported coarse-sampling tails are labelled explicitly.
+Charts are descriptive measurements and do not establish predictive power or
+independent market-data acceptance. `--as-of` restricts input to completed bars at
+an aware ISO timestamp. See [estimator definitions](docs/VOLATILITY.md).

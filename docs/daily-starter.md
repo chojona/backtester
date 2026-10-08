@@ -1,14 +1,14 @@
-# Futures backtester
+# Legacy daily futures backtester
 
-A Python 3.9+ starter for single-instrument, daily-bar futures research. It uses the standard library, so no third-party packages or API credentials are required.
+The preserved daily example in this project is a Python 3.12+ starter for single-instrument, daily-bar futures research. It uses the standard library, so no third-party packages or API credentials are required.
 
 ## Run
 
 ```sh
-cd ~/Desktop/Projects/backtester
+# From the repository root, after the README setup:
 source .venv/bin/activate
-python -m backtester
-python -m unittest discover -s tests -v
+python -m backtester daily
+python -m pytest -q tests/test_engine.py
 ```
 
 The included `data/sample.csv` is deterministic, **synthetic data**, not historical market prices. The example strategy trades a fixed number of contracts: long when the fast simple moving average exceeds the slow one, otherwise flat. It computes a signal after each close and executes it at the next available open.
@@ -18,7 +18,7 @@ The included `data/sample.csv` is deterministic, **synthetic data**, not histori
 Supply CSV with `date,open,close` columns, one row per daily bar, ISO dates (`YYYY-MM-DD`), and strictly increasing dates. Additional columns are ignored. Finite negative prices are supported. Use consistently defined sessions. The daily reader does not accept intraday timestamps.
 
 ```sh
-python -m backtester --data data/my_futures.csv --fast 20 --slow 50 \
+python -m backtester daily --data data/my_futures.csv --fast 20 --slow 50 \
   --cash 100000 --contracts 1 --multiplier 50 --tick-size 0.25 \
   --commission 2.50 --slippage-ticks 1 --margin 15000 \
   --periods-per-year 252 --output results/my-run
@@ -36,6 +36,9 @@ Futures P&L equals price change times contract multiplier times contracts. Equit
 
 ## Scope and next steps
 
-This starter models one instrument, fixed contract sizing, and long/flat positions. It does not model short positions, intraday stops, limit orders, market depth, interest, exchange calendars, expirations, settlement mechanics, or automatic contract rolls. Use a single contract within its life or a carefully prepared continuous series; rollover gaps and back-adjustments can distort P&L. Real continuous futures research needs explicit roll handling and costs before drawing conclusions. Historical data downloading and broker connections are not configured.
+This starter models one instrument, fixed contract sizing, and long/flat positions. It does not model short positions, intraday stops, limit orders, market depth, interest, exchange calendars, expirations, settlement mechanics, or automatic contract rolls. Use a single contract within its life or a carefully prepared continuous series; rollover gaps and back-adjustments can distort P&L. Real continuous futures research needs explicit roll handling and costs before drawing conclusions. The separate intraday engine has explicit constituent rolls and optional Databento
+acquisition; these features do not apply to this daily command. Broker connections
+are not implemented. See the [project README](../README.md) for setup and intraday
+workflows. Original flags without the `daily` subcommand remain supported.
 
 Edit the signal at the end of `backtester/engine.py` to replace the example strategy. Tests cover next-open execution, future-data isolation, fees and slippage, overnight P&L, margin rejection, flat prices, and invalid input.

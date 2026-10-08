@@ -8,6 +8,15 @@ The existing `engine.py` daily backtester and its seven tests are preserved. Its
 
 `strategy.py` defines lifecycle callbacks with frozen, prefix-only history, features, position, account and order snapshots. `execution.py` owns orders and fill assumptions. `risk.py` controls entry eligibility and integer sizing. `portfolio.py` owns futures accounting and excursions. `intraday.py` processes the chronological loop. `research.py` discovers events causally and labels their future outcomes in a separate offline pass. `reports.py` persists inputs, assumptions, metrics and audit artifacts. `cli.py` assembles a reproducible run.
 
+`providers/databento.py` and `providers/coverage.py` handle optional historical
+acquisition, provenance, dated calendars and coverage states; `provider_cli.py`
+exposes download/normalize/inspection. `volatility.py` measures causal raw-price
+variation, `volatility_cli.py` prints measurement reports, and
+`volatility_charts.py` plus the bundled HTML/JavaScript and vendor assets create
+local interactive reports and static exports. `scripts/` contains full-history
+preparation, dry-run, coverage and approval-gated acquisition tools; see
+[HISTORY.md](HISTORY.md).
+
 This is a trusted Python research API, not a security sandbox for hostile strategy code. A strategy given external data or using Python introspection could defeat the intended capability boundaries; built-in strategies receive no provider, future list or engine reference.
 
 ## Data and timestamps
@@ -35,7 +44,9 @@ Outright contracts only. Constants verified against [CME ES FAQ](https://www.cme
 
 ## Sessions and trading dates
 
-Default ETH runs from 18:00 ET the preceding calendar day to 17:00 ET on the trading date, Monday–Friday trading dates. Sunday evening belongs to Monday. Friday evening and weekends are closed. Daily 17:00–18:00 maintenance is excluded. Equity templates additionally exclude 16:15–16:30 ET. All clocks use `zoneinfo` New York DST rules, not fixed UTC offsets.
+Default ETH runs from 18:00 ET the preceding calendar day to 17:00 ET on the trading date, Monday–Friday trading dates. Sunday evening belongs to Monday. Friday evening and weekends are closed. Daily 17:00–18:00 maintenance is excluded. Legacy equity templates additionally exclude 16:15–16:30 ET for fixture
+reproducibility. That pause is obsolete for current NQ; the reviewed Databento
+calendar omits it. All clocks use `zoneinfo` New York DST rules, not fixed UTC offsets.
 
 Equity RTH is the requested research window 09:30–16:00 ET. Gold has its own configurable **research RTH convention** of 08:20–13:30 ET, not the equity window or a claim of restricted Globex trading hours. Its Globex ETH template is 18:00–17:00 ET, with no equity afternoon halt. Gold and Micro Gold do not inherit the 24/7 schedule of the separate 1-ounce gold product.
 
@@ -111,26 +122,33 @@ Forward MFE/MAE starts at the **next bar after detection**, at 5/15/30/60 elapse
 
 First-passage statistics measure whether each configured away threshold (NQ/MNQ example 5/10/20/30 points) occurs before a configured through-distance on the opposite side, within the largest horizon. Thresholds are instrument-specific in the example config and are **illustrative research definitions**, not optimized strategy parameters. If both barriers occur in one bar, opening gaps resolve ordering where possible; otherwise conservative/optimistic policy and ambiguous-bar counts are recorded. Unresolved, no-passage and censored observations are separately counted. Distribution statistics use complete windows only and include sample counts, mean, median and 10th/90th percentiles.
 
-The same event/label interfaces accept `session_vwap` through Python for the next daily/session experiment. It is not registered as another CLI trading strategy. No ML, optimization, live trading, frontend or additional trading strategies have been added.
+The same event/label interfaces accept `session_vwap` through Python for the next daily/session experiment. It is not registered as another CLI trading strategy. No ML, optimization, live trading or additional trading strategies have been added.
+The optional offline chart viewer is descriptive and does not submit trades.
 
-## Historical baseline validation
+## Validation
 
-The counts and runtime below describe the original intraday implementation, not
-the current suite. The current Python 3.12 offline suite has **235 passing tests**,
-with one live integration test excluded. Realized-volatility definitions and
-verification are in [VOLATILITY.md](VOLATILITY.md); Databento adapter verification
-is in [DATABENTO.md](DATABENTO.md).
-
-
-The complete pytest suite contains **128 passing tests** on Python 3.9.6 with pytest 8.4.2, including the original seven daily tests. New coverage spans all six contract economics and execution P&L, decimal tick rounding, commission/exchange fees, 0/1/2/4-tick slippage, risk sizing, session boundaries and both DST changes, malformed/duplicate/missing/off-grid candles, VWAP math and resets, PDH/PDL/PDC, overnight levels, IB completion, ATR, immutable strategy contexts, future-data perturbation, next-bar execution, market/limit/stop orders, stop gaps, partial fills, triggered stop persistence, OCO ambiguity policies, partial-target stop retention, risk limits, daily loss recovery lockout, DAY expiry, roll selection/adjustments/cost accounting, forward censoring, MFE/MAE signs, metrics, CLI validation/run/report, and repeated-run deterministic results.
+Run `python -m pytest -q` for the current configured offline suite. The opt-in live
+metadata/estimate test is excluded by default. Coverage includes legacy daily
+execution, contract economics, sessions/DST, ingestion, causal features, orders,
+risk, rolls, research censoring, provider provenance, volatility, charts and
+history preparation. Tests exercise implemented assumptions, not their empirical
+realism. Dated test counts belong to the
+[acceptance report](acceptance/databento-2026-10-07.md), rather than a permanent
+claim about the evolving suite.
 
 Synthetic fixtures contain 2,730 one-minute bars and 546 aggregated five-minute bars over two full weekday-template trading dates. Each smoke run discovers two events with complete 5/15/30/60-minute horizons and zero trades. These counts verify wiring only; they are not market research findings. Tests exercise the implemented assumptions, not their empirical realism.
 
 The core needs no third-party runtime dependency. The optional Databento adapter uses its SDK. `requirements-dev.txt` pins pytest; `requirements-py312.lock` records the current Python 3.12 environment, while `requirements-dev.lock` retains the historical Python 3.9 baseline.
 
-## Recommended next task
+## Current research stage
 
-Import a licensed, raw NQ constituent-contract OHLCV export with explicit publication-time conventions, a dated exchange holiday/early-close/halts calendar, expiration/first-notice metadata, and overlapping old/new contract data. Validate a small known period manually against source prints and session/roll behavior. Only after data/session conventions are verified should the first weekly VWAP event distributions be collected and an out-of-sample hypothesis designed.
+The retained NQ September 14–25, 2026 acquisition has bounded independent
+acceptance for normalization, the observed volume roll and realized measurements.
+See [DATABENTO.md](DATABENTO.md) and the dated acceptance report. Full-history
+acquisition tools exist, but a reviewed historical calendar, cross-chunk
+normalization, overlap verification and independent acceptance are still required
+before the longer dataset can supply daily model targets. See [HISTORY.md](HISTORY.md).
+No HAR/GARCH/ML forecasting model or empirical trading edge is established.
 
 ## Problems found
 
@@ -142,7 +160,8 @@ Import a licensed, raw NQ constituent-contract OHLCV export with explicit public
 - Missing trading dates must not turn older highs/lows into yesterday's levels; those levels now return null.
 - A loss observed only at closing equity can miss an intrabar breach; fully held bar extremes now lock out subsequent entries, without pretending to know an intrabar liquidation sequence.
 - Holiday/early-close calendars, expirations, first-notice dates and published-as-of OI are supplied metadata, not a bundled certified market database.
-- Fees, margin and reaction thresholds are illustrative. Actual broker/exchange requirements and data economics have not been connected.
+- Fees, margin and reaction thresholds are illustrative. Live broker/exchange requirements are not connected; acquisition uses explicit
+  provider estimates and local cost gates.
 - Fixed rolls use calendar days and the first observed bar; incomplete session starts may delay a roll. Paired opens and expiry checks prevent silent contract-gap P&L but do not infer missing execution prices.
 - Roll execution assumes synchronous-open liquidity; multi-contract order-book capacity is not modeled.
 - The engine supports one instrument/position per run and no scale-ins; partial entry remainders are cancelled explicitly.

@@ -28,6 +28,10 @@ data/*
 !data/synthetic_NQ_1m.csv
 !data/synthetic_NQ_5m.csv
 
+# Detailed acceptance evidence contains licensed provider samples; keep it local.
+docs/acceptance/*-evidence.json
+docs/acceptance/*-prefixes.json
+
 # Operating-system and editor scratch files.
 .DS_Store
 ._*

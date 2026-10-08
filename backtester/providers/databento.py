@@ -102,13 +102,24 @@ class DownloadRequest:
     symbols: tuple=('NQ.FUT',)
     stype_in: str='parent'
     symbol: str='NQ'
+    schemas: tuple=('ohlcv-1m','definition','statistics')
 
     def __post_init__(self):
         object.__setattr__(self,'start',parse_time(self.start))
         object.__setattr__(self,'end',parse_time(self.end))
         object.__setattr__(self,'symbols',tuple(self.symbols))
-        if self.dataset!=DATASET or self.schema!='ohlcv-1m' or self.symbol!='NQ' or self.symbols!=('NQ.FUT',) or self.stype_in!='parent':
-            raise ValueError('Initial adapter requires GLBX.MDP3 / ohlcv-1m / NQ.FUT / parent')
+        object.__setattr__(self,'schemas',tuple(self.schemas))
+        if self.dataset!=DATASET or self.schema!='ohlcv-1m' or self.symbol!='NQ' or not self.symbols:
+            raise ValueError('Adapter requires GLBX.MDP3 / ohlcv-1m / NQ instruments')
+        if self.stype_in=='parent':
+            if self.symbols!=('NQ.FUT',): raise ValueError('Parent symbology requires NQ.FUT')
+        elif self.stype_in=='raw_symbol':
+            if any(not re.fullmatch(r'NQ[HMUZ]\d{1,4}',str(s)) for s in self.symbols):
+                raise ValueError('Raw-symbol requests must contain only quarterly NQ outrights')
+        else:
+            raise ValueError('Use parent NQ.FUT or explicit quarterly raw-symbol outrights')
+        if set(self.schemas)-{'ohlcv-1m','definition','statistics'} or 'ohlcv-1m' not in self.schemas or 'definition' not in self.schemas:
+            raise ValueError('Unsupported schema set')
         if self.end<=self.start or any(to_ns(t)%(60*NANO) for t in (self.start,self.end)):
             raise ValueError('Request must have increasing minute-aligned timestamps')
 
@@ -146,7 +157,7 @@ class HistoricalGateway:
 
     def estimate(self,request):
         results={}
-        for schema in ('ohlcv-1m','definition','statistics'):
+        for schema in request.schemas:
             kwargs=request.kwargs(schema)
             cost=self.call('cost estimate',self.client.metadata.get_cost,**kwargs)
             size=self.call('size estimate',self.client.metadata.get_billable_size,**kwargs)
@@ -162,7 +173,7 @@ class HistoricalGateway:
                              start_date=request.start.date().isoformat(),end_date=(request.end-timedelta(microseconds=1)).date().isoformat())
         available=self.call('dataset range',self.client.metadata.get_dataset_range,dataset=request.dataset)
         schemas=available.get('schema',{})
-        for schema in ('ohlcv-1m','definition','statistics'):
+        for schema in request.schemas:
             bounds=schemas.get(schema,available)
             kwargs=request.kwargs(schema)
             if parse_time(bounds['start'])>parse_time(kwargs['start']) or parse_time(bounds['end'])<parse_time(kwargs['end']):
@@ -173,13 +184,14 @@ class HistoricalGateway:
         raw_directory=Path(raw_directory)
         raw_directory.mkdir(parents=True,exist_ok=False)
         status=dict(provider='Databento',sdk_version=SDK_VERSION,request=request.kwargs(),
+                    schemas=list(request.schemas),
                     download_started=datetime.now(timezone.utc),download_complete=False,
                     estimate=estimate,**coverage_metadata)
         json_write(raw_directory/'request.json',status)
         files={'request.json':hash_file(raw_directory/'request.json')}
         dbn_metadata={}
         try:
-            for schema in ('definition','ohlcv-1m','statistics'):
+            for schema in request.schemas:
                 path=raw_directory/(schema+'.dbn.zst')
                 store=self.call(schema+' download',self.client.timeseries.get_range,**request.kwargs(schema),path=path)
                 meta=store.metadata
@@ -467,17 +479,17 @@ def normalize_download(raw_directory,directory,calendar,no_trade_policy='preserv
     manifest=json.loads((raw_directory/'manifest.json').read_text())
     if not manifest.get('download_complete'):
         raise ValueError('Raw request is incomplete; normalization refused')
-    if not {'definition.jsonl','ohlcv-1m.jsonl','statistics.jsonl'}.issubset(manifest['files']):
+    if not {'definition.jsonl','ohlcv-1m.jsonl'}.issubset(manifest['files']):
         raise ValueError('Raw manifest lacks required schema hashes')
     for name,digest in manifest['files'].items():
         if Path(name).name!=name or hash_file(raw_directory/name)!=digest:
             raise ValueError('Raw source hash mismatch')
     params=manifest['request']
-    request=DownloadRequest(params['start'],params['end'],params['dataset'],params['schema'],tuple(params['symbols']),params['stype_in'])
+    request=DownloadRequest(params['start'],params['end'],params['dataset'],params['schema'],tuple(params['symbols']),params['stype_in'],schemas=tuple(manifest.get('schemas',('ohlcv-1m','definition','statistics'))))
     coverage=ProviderCoverage(request.start,request.end,manifest['conditions'],True)
     records=read_jsonl(raw_directory/'ohlcv-1m.jsonl')
     definitions=read_jsonl(raw_directory/'definition.jsonl')
-    statistics=read_jsonl(raw_directory/'statistics.jsonl')
+    statistics=read_jsonl(raw_directory/'statistics.jsonl') if (raw_directory/'statistics.jsonl').exists() else []
     bars,audit=normalize_records(records,definitions,statistics,request,coverage,calendar,no_trade_policy,nearby_contracts,oi_policy)
     return write_normalized(directory,bars,audit,manifest,raw_directory)
 

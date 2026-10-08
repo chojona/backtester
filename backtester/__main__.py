@@ -3,6 +3,9 @@ import sys
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "volatility-charts":
+        from .volatility_charts import main as charts_main
+        return charts_main()
     if len(sys.argv) > 1 and sys.argv[1] == "volatility":
         from .volatility_cli import main as volatility_main
         return volatility_main()
