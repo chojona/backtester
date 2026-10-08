@@ -7,7 +7,7 @@ import pytest
 
 from backtester.rolls import SelectedBar
 from backtester.sessions import SessionCalendar
-from backtester.volatility_charts import prepare_sessions, render_charts, aggregate_ohlcv, _chart_payload
+from backtester.volatility_charts import prepare_sessions, render_charts, aggregate_ohlcv, aggregate_session_ohlcv, _chart_payload
 from conftest import make_bar
 
 
@@ -144,12 +144,74 @@ for(const [minutes,count] of [[1,1380],[5,276],[15,92],[1,1380]]){
  assert.equal(received.ohlc[0].time,session.bars[String(minutes)][0][0]/1000);
 }
 assert.equal(JSON.stringify(session),before);
+const higher=D.timeframe(session,60);
+assert.equal(higher.count,23);
+assert.equal(D.timeframe(session,240).count,6);
+assert.equal(D.timeframe(session,1440).count,1);
+const next=JSON.parse(JSON.stringify(session));
+for(const key of ['60','240','1440'])next.bars[key].forEach(bar=>bar[0]+=86400000);
+const other={...next,contract:'OTHER'};
+const multi=D.applyTimeframe(session,1440,apis,[session,next,other]);
+assert.equal(multi.count,2); // selected raw contract only, across both sessions
+assert.equal(multi.volume.reduce((n,p)=>n+p.value,0),27600);
+const second=JSON.parse(JSON.stringify(session)),third=JSON.parse(JSON.stringify(session));
+second.date='2026-01-06';third.date='2026-01-07';third.contract='NEXT';
+for(const rows of Object.values(second.bars))rows.forEach(bar=>bar[0]+=86400000);
+for(const rows of Object.values(third.bars))rows.forEach(bar=>bar[0]+=2*86400000);
+for(const minutes of [1,5,15,60,240,1440]){
+ const joined=D.applyTimeframe(null,minutes,apis,[third,session,second]);
+ assert.equal(joined.count,session.bars[String(minutes)].length*3);
+ assert.equal(joined.volume.reduce((n,p)=>n+p.value,0),41400);
+ assert.deepEqual(joined.rolls,[{time:third.bars[String(minutes)][0][0]/1000,from:session.contract,to:'NEXT'}]);
+ assert.deepEqual(received.candles,received.ohlc);
+}
+assert.equal(JSON.stringify(session),before); // combined view must not adjust raw prices
 assert.throws(()=>D.timeframe(session,2));
 const runs=D.runs([[1000,1],[2000,2],[2000,null],[4000,3],[5000,null],[6000,4]],1);
 assert.deepEqual(runs,[[{time:1,value:1},{time:2,value:2}],[{time:4,value:3}],[{time:6,value:4}]]);
 assert.equal(D.exactAt(runs[0],1.5),undefined); // do not substitute a future observation
 assert.equal(D.exactAt(runs[0],2).value,2);
 assert.equal(D.timeKey({year:2026,month:9,day:14}),'2026-09-14');
+// Reset must ignore the previously zoomed viewport and center the full time union.
+let viewport,scaleOptions;const vertical=[];
+const chart={
+ timeScale:()=>({applyOptions:o=>{scaleOptions=o},setVisibleLogicalRange:r=>{viewport=r},
+   getVisibleLogicalRange:()=>{throw new Error('Reset must not reuse old viewport')}}),
+ panes:()=>[{},{}],priceScale:(side,pane)=>({applyOptions:o=>vertical.push({side,pane,...o})}),
+};
+for(const minutes of [1,5,15]){
+ const result=D.timeframe(session,minutes);
+ D.fitAllData(chart,[{points:result.ohlc},{points:result.volume}]);
+ assert.ok(viewport.from<0&&viewport.to>result.count-1);
+ assert.equal((viewport.from+viewport.to)/2,(result.count-1)/2);
+ assert.equal(scaleOptions.rightOffset,0);
+ assert.ok(scaleOptions.minBarSpacing<.01);
+}
+assert.ok(vertical.every(p=>p.side==='left'&&p.autoScale&&p.scaleMargins.top===p.scaleMargins.bottom));
+assert.deepEqual(new Set(vertical.map(p=>p.pane)),new Set([0,1]));
+D.fitAllData(chart,[{points:[{time:1,value:1},{time:3,value:3}]},{points:[{time:2,value:2}]}]);
+assert.equal((viewport.from+viewport.to)/2,1); // union has three distinct times
+assert.equal(D.fitAllData(chart,[]),null);
 """
     result=subprocess.run([node,'-e',script,str(adapter),str(dataset)],capture_output=True,text=True)
     assert result.returncode==0,result.stderr
+
+
+@pytest.mark.parametrize('calendar', [SessionCalendar(breaks=[]), SessionCalendar()])
+def test_higher_timeframes_preserve_complete_session_ohlcv_and_closing_tail(calendar):
+    from conftest import day_bars
+    bars=day_bars(calendar=calendar)
+    bars=[replace(b,open=100+i,high=102+i,low=99+i,close=101+i,volume=i+1) for i,b in enumerate(bars)]
+    group=prepare_sessions(selected(bars),calendar)[0]
+    assert group['last'].session_complete
+    for minutes,count in [(60,23),(240,6),(1440,1)]:
+        result=aggregate_session_ohlcv(group,minutes)
+        assert len(result)==count
+        assert result[0][1]==bars[0].open and result[-1][4]==bars[-1].close
+        assert max(b[2] for b in result)==max(b.high for b in bars)
+        assert min(b[3] for b in result)==min(b.low for b in bars)
+        assert sum(b[5] for b in result)==sum(b.volume for b in bars)
+    incomplete=prepare_sessions(selected(bars[:-1]),calendar)[0]
+    assert aggregate_session_ohlcv(incomplete,1440)==[]
+    missing=prepare_sessions(selected(bars[:100]+bars[101:]),calendar)[0]
+    assert aggregate_session_ohlcv(missing,60)==[]

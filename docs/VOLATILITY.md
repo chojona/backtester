@@ -243,12 +243,23 @@ calendar source. The viewer provides raw 1/5/15-minute OHLC bars, synchronized
 volume, zoom, pan, hover values, and separate intraday measurement charts.
 The offline viewer bundles TradingView Lightweight Charts 5.1.0 with its Apache
 license, NOTICE, source metadata, and visible attribution. Price and volume share
-a resizable pane boundary. Intraday charts link time ranges and crosshairs;
-comparison charts link within their own group. Timeframe controls replace OHLC
+a resizable pane boundary. Every chart has independent time ranges and crosshairs, explicit zoom buttons,
+and Reset view to fit all points and restore vertical autoscaling. Timeframe controls replace OHLC
 and volume data only; research indicators retain their defined sampling frequency.
 Complete 1,380-minute sessions contain 1,380/276/92 price and volume bars at
 1m/5m/15m respectively. Aggregation preserves total volume and excludes incomplete
 blocks and unknown bars. No new market data is fetched when switching intervals.
+
+The default All sessions view joins selected active-contract sessions into one
+timeline at every timeframe, with contract rolls marked and raw prices unchanged.
+Intraday research lines stay separate at session boundaries; cumulative variance
+restarts for each session. Individual sessions remain available in the selector.
+
+When an individual session is selected, the 1H, 4H and 1D views use all complete downloaded sessions for the selected
+raw contract. Hourly and four-hour bars start at the futures session open; the
+scheduled closing tail is included. Daily bars cover one futures session, not
+a midnight-to-midnight day. No bar combines contracts or incomplete sessions.
+
 No chart code executes network requests, trading, or model fitting.
 
 Only complete sessions enter the comparison figure. Details retain missing-return

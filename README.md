@@ -151,10 +151,21 @@ sessions and lets you select raw 1m/5m/15m OHLC and volume, returns, cumulative
 variance and a profile based only on prior completed sessions. Zoom, pan and
 synchronized crosshairs are available. PNG and SVG exports are included.
 The viewer uses locally bundled TradingView Lightweight Charts 5.1.0, with
-candlesticks or OHLC bars, a resizable volume pane, linked crosshairs and time
-ranges, drag-to-pan, wheel zoom, and price-scale controls. The 1m/5m/15m buttons
+candlesticks or OHLC bars, a resizable volume pane, independent chart navigation, drag-to-pan, wheel zoom,
+and price-scale controls. Every chart has zoom buttons and Reset view to fit all points. The 1m/5m/15m buttons
 replace both price and volume bars; research indicators retain their defined
 sampling frequency. Each comparison chart is interactive and displayed separately.
+
+The default All sessions view joins selected active-contract sessions into one
+timeline at every timeframe, with contract rolls marked and raw prices unchanged.
+Intraday research lines stay separate at session boundaries; cumulative variance
+restarts for each session. Individual sessions remain available in the selector.
+
+When an individual session is selected, the 1H, 4H and 1D views use all complete downloaded sessions for the selected
+raw contract. Hourly and four-hour bars start at the futures session open; the
+scheduled closing tail is included. Daily bars cover one futures session, not
+a midnight-to-midnight day. No bar combines contracts or incomplete sessions.
+
 All assets are local; no market data is uploaded. Variance is shown in squared
 basis points; volatility is `sqrt(RV) * 100` percent, without annualization.
 Incomplete sessions and unsupported coarse-sampling tails are labelled explicitly.

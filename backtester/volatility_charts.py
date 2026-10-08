@@ -48,6 +48,7 @@ def prepare_sessions(selected, calendar, threshold=None):
         reference = previous.close if adjacent else bar.open
         r = None if bar.coverage_state == 'UNKNOWN' else log_return(reference, bar.close)
         group = groups.setdefault(key, {'date': key[0], 'contract': key[1], 'points': [], 'roll': item.roll, 'source': bar.provider or 'local OHLCV; source unverified'})
+        group['session_open'] = calendar.classify(bar.timestamp).open
         if previous is not None and key == previous_key and previous.end != bar.timestamp:
             group['points'].append({'timestamp': previous.end, 'close': None, 'return': None, 'record': None, 'bar': None, 'segment_open': None})
         group['points'].append({'timestamp': bar.end, 'close': bar.close if r is not None else None,
@@ -100,6 +101,30 @@ def aggregate_ohlcv(points, minutes):
     return result
 
 
+def aggregate_session_ohlcv(group, minutes):
+    """Session-open anchored higher bars, including the scheduled closing tail.
+
+    Only complete sessions qualify. Planned closures are not missing data; raw
+    contracts remain separate. A daily bar covers one futures trading session.
+    """
+    if minutes not in (60, 240, 1440):
+        raise ValueError('Higher chart intervals must be 60, 240 or 1440 minutes')
+    if not group['last'].session_complete:
+        return []
+    bars = [p['bar'] for p in group['points'] if p['bar'] is not None]
+    if not bars or any(b.coverage_state == 'UNKNOWN' for b in bars):
+        return []
+    blocks = OrderedDict()
+    opened = group['session_open']
+    for bar in bars:
+        offset = int((bar.timestamp-opened)/timedelta(minutes=1))
+        start = opened if minutes == 1440 else opened+timedelta(minutes=offset//minutes*minutes)
+        blocks.setdefault(start, []).append(bar)
+    return [[int(start.timestamp()*1000), chunk[0].open, max(b.high for b in chunk),
+             min(b.low for b in chunk), chunk[-1].close, math.fsum(b.volume for b in chunk)]
+            for start, chunk in blocks.items()]
+
+
 def _chart_payload(groups):
     sessions = []
     for group in groups:
@@ -122,7 +147,8 @@ def _chart_payload(groups):
                              complete=row.session_complete, prefix_complete=row.prefix_complete,
                              missing=row.missing_bars_to_now, unknown=row.unknown_bars,
                              references=row.profile_reference_sessions, series=series,
-                             bars={str(k):aggregate_ohlcv(group['points'], k) for k in (1,5,15)},
+                             bars={**{str(k):aggregate_ohlcv(group['points'], k) for k in (1,5,15)},
+                                   **{str(k):aggregate_session_ohlcv(group,k) for k in (60,240,1440)}},
                              rth=[int(rth[0].timestamp.timestamp()*1000), int(rth[-1].end.timestamp()*1000)] if rth else None))
     return dict(instrument=groups[0]['last'].instrument, sessions=sessions)
 

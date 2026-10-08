@@ -86,3 +86,13 @@ def test_partial_chunk_never_automatically_retries(tmp_path):
     assert not completed(tmp_path/'absent',{})
     raw=tmp_path/'partial';raw.mkdir();(raw/'failure.json').write_text('{}')
     with pytest.raises(ValueError,match='Partial raw chunk retained'): completed(raw,{})
+
+
+def test_acquisition_hard_maximum_is_enforced_before_any_download():
+    from scripts.acquire_nq_history import verify_plan
+    chunk=chunks(datetime(2026,9,13,22,tzinfo=UTC),datetime(2026,9,25,21,tzinfo=UTC))[0]
+    chunk.update(estimates_usd={'definition':'40','ohlcv-1m':'46'},total_cost_usd='86')
+    plan=dict(chunks=[chunk],schemas=['definition','ohlcv-1m'],total_cost_usd='86')
+    plan['approval_sha256']=digest(plan)
+    with pytest.raises(ValueError,match=r'hard \$85'):
+        verify_plan(plan,plan['approval_sha256'],'86')

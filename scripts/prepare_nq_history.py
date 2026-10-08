@@ -37,10 +37,11 @@ def client():
     return db.Historical(key=credentials())
 
 def request(start,end,schema):
+    symbols=contracts(start,end)
     if schema=='definition':
         start=start.replace(hour=0,minute=0,second=0,microsecond=0)
         end=(end-timedelta(microseconds=1)).replace(hour=0,minute=0,second=0,microsecond=0)+timedelta(days=1)
-    return dict(dataset='GLBX.MDP3',symbols=contracts(start,end),stype_in='raw_symbol',schema=schema,start=iso(start),end=iso(end))
+    return dict(dataset='GLBX.MDP3',symbols=symbols,stype_in='raw_symbol',schema=schema,start=iso(start),end=iso(end))
 
 def contracts(start,end):
     """Quarterly raw outright symbols spanning the chunk plus a roll successor."""
@@ -124,12 +125,17 @@ def discover(out):
 def estimate_chunk(out,chunk):
     c=client(); estimates={}; sizes={}; counts={}
     for schema,kwargs in chunk['requests'].items():
-        estimate=cached(out,'cost-'+digest(kwargs),lambda kw=kwargs:c.metadata.get_cost(**kw))
-        amount=Decimal(str(estimate))
-        if not amount.is_finite() or amount<0: raise ValueError('Invalid provider cost estimate')
-        estimates[schema]=str(amount)
-        sizes[schema]=cached(out,'size-'+digest(kwargs),lambda kw=kwargs:c.metadata.get_billable_size(**kw))
-        counts[schema]=cached(out,'count-'+digest(kwargs),lambda kw=kwargs:c.metadata.get_record_count(**kw))
+        try:
+            estimate=cached(out,'cost-'+digest(kwargs),lambda kw=kwargs:c.metadata.get_cost(**kw))
+            amount=Decimal(str(estimate))
+            if not amount.is_finite() or amount<0: raise ValueError('Invalid provider cost estimate')
+            estimates[schema]=str(amount)
+            sizes[schema]=cached(out,'size-'+digest(kwargs),lambda kw=kwargs:c.metadata.get_billable_size(**kw))
+            counts[schema]=cached(out,'count-'+digest(kwargs),lambda kw=kwargs:c.metadata.get_record_count(**kw))
+        except ValueError:
+            raise
+        except Exception as error:
+            raise RuntimeError(f'Metadata estimate failed: chunk={chunk["chunk_id"]} schema={schema} error={type(error).__name__}') from None
     total=sum(Decimal(x) for x in estimates.values())
     row=dict(chunk,estimates_usd=estimates,estimated_bytes=sizes,estimated_records=counts,total_cost_usd=str(total))
     write(out/'chunks'/f'{chunk["chunk_id"]}.json',row)
@@ -148,13 +154,14 @@ def main():
     if args.discovery_only: return
     # Two workers, each with its own SDK client. Cache every successful metadata response.
     rows=[]
-    with ThreadPoolExecutor(max_workers=2) as pool:
+    with ThreadPoolExecutor(max_workers=1) as pool:
         for i,row in enumerate(pool.map(lambda x:estimate_chunk(out,x),plan),1):
             rows.append(row)
             if i%10==0 or i==len(plan): print(f'Estimated {i}/{len(plan)} chunks',flush=True)
     c=client(); full={}
     for schema in SCHEMAS:
-        kwargs=dict(dataset='GLBX.MDP3',symbols=all_quarterly_symbols(first,last),stype_in='raw_symbol',schema=schema,start=iso(first),end=iso(last))
+        kwargs=request(first,last,schema)
+        kwargs['symbols']=all_quarterly_symbols(first,last)
         full[schema]=cached(out,'full-'+digest(kwargs),lambda kw=kwargs:dict(cost_usd=c.metadata.get_cost(**kw),records=c.metadata.get_record_count(**kw),billable_bytes=c.metadata.get_billable_size(**kw)))
     total=sum(Decimal(r['total_cost_usd']) for r in rows)
     by_schema={s:str(sum(Decimal(str(r['estimates_usd'][s])) for r in rows)) for s in SCHEMAS}
@@ -168,5 +175,5 @@ def main():
 if __name__=='__main__':
     try: main()
     except Exception as e:
-        print('Metadata preparation stopped:',type(e).__name__,'(provider diagnostics withheld; successful responses retained)',flush=True)
+        print('Metadata preparation stopped:',str(e) if isinstance(e,RuntimeError) else type(e).__name__,'(successful responses retained)',flush=True)
         raise SystemExit(1) from None
