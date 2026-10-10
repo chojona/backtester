@@ -208,8 +208,10 @@ class HistoricalGateway:
                 self.call(schema+' fixed-point export',store.to_json,path=export,pretty_px=False,pretty_ts=False,map_symbols=False,mode='x')
                 files[path.name]=hash_file(path)
                 files[export.name]=hash_file(export)
-        except Exception:
-            json_write(raw_directory/'failure.json',dict(status='INCOMPLETE',note='Partial raw files retained; no normalization allowed'))
+        except BaseException as exc:
+            state='INTERRUPTED_BY_USER' if isinstance(exc,KeyboardInterrupt) else 'FAILED'
+            json_write(raw_directory/'failure.json',dict(status=state,exception_type=type(exc).__name__,
+                note='Partial raw files retained; no normalization allowed and no automatic retry'))
             raise
         status.update(download_complete=True,download_timestamp=datetime.now(timezone.utc),files=files,dbn_metadata=dbn_metadata)
         json_write(raw_directory/'manifest.json',status)

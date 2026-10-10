@@ -1,5 +1,6 @@
 """Offline acquisition-preparation invariants; no real credentials or network."""
 from datetime import datetime, timedelta, timezone
+from decimal import Decimal
 import json
 from pathlib import Path
 import pytest
@@ -86,6 +87,8 @@ def test_partial_chunk_never_automatically_retries(tmp_path):
     assert not completed(tmp_path/'absent',{})
     raw=tmp_path/'partial';raw.mkdir();(raw/'failure.json').write_text('{}')
     with pytest.raises(ValueError,match='Partial raw chunk retained'): completed(raw,{})
+    (raw/'failure.json').write_text(json.dumps({'status':'INTERRUPTED_BY_USER'}))
+    assert not completed(raw,{},allow_interrupted=True)
 
 
 def test_acquisition_hard_maximum_is_enforced_before_any_download():
@@ -96,3 +99,34 @@ def test_acquisition_hard_maximum_is_enforced_before_any_download():
     plan['approval_sha256']=digest(plan)
     with pytest.raises(ValueError,match=r'hard \$85'):
         verify_plan(plan,plan['approval_sha256'],'86')
+
+
+def test_reprice_uses_cost_endpoint_and_frozen_schema_bounds():
+    from scripts.acquire_nq_history import reprice
+    row=chunks(datetime(2026,9,13,22,tzinfo=UTC),datetime(2026,9,25,21,tzinfo=UTC))[0]
+    row.update(estimated_bytes={'definition':100,'ohlcv-1m':200},
+               estimated_records={'definition':2,'ohlcv-1m':3})
+    seen=[]
+    class Metadata:
+        def get_cost(self,**kwargs):
+            seen.append(kwargs)
+            return .01 if kwargs['schema']=='definition' else .02
+    class Client: metadata=Metadata()
+    class Gateway:
+        client=Client()
+        @staticmethod
+        def call(_name,function,**kwargs): return function(**kwargs)
+    result=reprice(Gateway(),row)
+    assert result['total_cost_usd']==pytest.approx(.03)
+    assert [item['schema'] for item in seen]==['definition','ohlcv-1m']
+    assert seen[0]['start']!=seen[1]['start']
+    assert result['requests']['definition']['billable_bytes']==100
+
+
+def test_retry_budget_counts_all_archived_and_current_partial_attempts(tmp_path):
+    from scripts.acquire_nq_history import prior_attempt_cost
+    archived=tmp_path/'interrupted-attempts'/'old';archived.mkdir(parents=True)
+    (archived/'request.json').write_text(json.dumps({'estimate':{'total_cost_usd':.35}}))
+    partial=tmp_path/'current';partial.mkdir()
+    (partial/'request.json').write_text(json.dumps({'estimate':{'total_cost_usd':.37}}))
+    assert prior_attempt_cost(tmp_path,[{'chunk_id':'current'}])==Decimal('0.72')

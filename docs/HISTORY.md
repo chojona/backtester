@@ -27,6 +27,37 @@ normalization, overlap checks and acceptance. A provider availability endpoint
 or an elapsed session close does not prove complete usable market data. The
 preparation scripts do not implement forecasting or trading.
 
+The retained acquisition now has a conservative full-date audit:
+
+```sh
+python -m scripts.certify_nq_history
+```
+
+See `results/databento-nq-full-history/certification-report.md` and its dated
+CSV/JSON registers. Only eleven dates are currently marked `ACCEPT`; the full
+2010–2026 history remains uncertified. The old full-minute-grid candidate test
+is not an acceptance rule because Databento omits bars when no trade occurs.
+The pre-November 19, 2012 trade-date assignment also needs correction before
+those sessions can be promoted.
+
+## Phase 3 tiered historical certification
+
+Run `python -m scripts.certify_nq_history_phase3` to build the versioned
+`nq-history-v3.0.0` calendar and certification outputs under
+`results/databento-nq-full-history/phase3-v3.0.0/`. The tracked
+`calendars/nq-history-v3.json` and
+`calendars/sources/nq-history-v3-evidence.json` contain the rule and source
+provenance. The generated report, yearly coverage, decision register and
+allowlists give the exact results for the retained dataset.
+
+Tier A is the strict certified set. Tier B is a provisional exploratory set:
+it requires a CME-sourced regular-hour regime, clean provider metadata, a
+non-holiday-risk date, an intact active-minute grid, and prior-session volume
+evidence. Tier C and D are excluded from both output datasets. No absent OHLCV
+bar is automatically declared missing data. The historical exception calendar
+is incomplete, so Tier B is not exchange certified and missing expected-session
+counts remain unresolved.
+
 ## Metadata-only preparation
 
 ```sh

@@ -1,0 +1,60 @@
+{
+  "version": "nq-history-v3.0.0",
+  "scope": {"first_trading_date": "2010-06-07", "last_trading_date": "2026-10-06"},
+  "timezone": "America/New_York",
+  "status": "REGIME_RULES_SOURCE_BACKED; HISTORICAL_DATE_EXCEPTIONS_INCOMPLETE",
+  "regimes": [
+    {
+      "id": "R1_PRE_2012_TRADE_DATE_CHANGE",
+      "first": "2010-06-07", "last": "2012-11-18",
+      "open_et": "16:30 previous weekday; 18:00 Sunday",
+      "close_et": "16:15",
+      "maintenance_et": "17:30-18:00 previous weekday; weekend closure",
+      "date_assignment": "Weekday 16:30-17:30 ET belongs to next trade date; the 16:15-16:30 pause separates trade dates.",
+      "source_ids": ["CME_2012_HOURS", "PMC_CME_EQUITY"]
+    },
+    {
+      "id": "R2_2012_EXTENSION",
+      "first": "2012-11-19", "last": "2015-09-20",
+      "open_et": "18:00 previous date", "close_et": "17:15",
+      "pause_et": "16:15-16:30", "maintenance_et": "17:15-18:00",
+      "date_assignment": "Pause is within the same trade date.",
+      "source_ids": ["CME_2012_HOURS", "CME_2015_CLOSE"]
+    },
+    {
+      "id": "R3_2015_CLOSE_CHANGE",
+      "first": "2015-09-21", "last": "2021-06-27",
+      "open_et": "18:00 previous date", "close_et": "17:00",
+      "pause_et": "16:15-16:30", "maintenance_et": "17:00-18:00",
+      "date_assignment": "Pause remains within the same trade date.",
+      "source_ids": ["CME_2015_CLOSE", "CME_2021_PAUSE"]
+    },
+    {
+      "id": "R4_NO_AFTERNOON_PAUSE",
+      "first": "2021-06-28", "last": "2026-10-06",
+      "open_et": "18:00 previous date", "close_et": "17:00",
+      "maintenance_et": "17:00-18:00",
+      "date_assignment": "Regular evening open belongs to next trade date; 2026 holiday trade-date changes require dated review.",
+      "source_ids": ["CME_2021_PAUSE"]
+    }
+  ],
+  "date_evidence": [
+    {"first": "2026-09-14", "last": "2026-09-25", "state": "REVIEWED_REGULAR", "source_ids": ["CME_2026_HOLIDAYS", "LOCAL_2026_SEPTEMBER_REVIEW"]},
+    {"first": "2026-10-06", "last": "2026-10-06", "state": "REVIEWED_REGULAR", "source_ids": ["CME_2026_HOLIDAYS", "CME_2021_PAUSE"]},
+    {"first": "2025-12-31", "last": "2026-01-02", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]},
+    {"first": "2026-01-18", "last": "2026-01-20", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]},
+    {"first": "2026-02-15", "last": "2026-02-17", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]},
+    {"first": "2026-04-02", "last": "2026-04-04", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]},
+    {"first": "2026-05-24", "last": "2026-05-26", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]},
+    {"first": "2026-06-18", "last": "2026-06-19", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]},
+    {"first": "2026-07-03", "last": "2026-07-05", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]},
+    {"first": "2026-09-06", "last": "2026-09-08", "state": "CME_HOLIDAY_WINDOW_HOURS_UNRESOLVED", "source_ids": ["CME_2026_HOLIDAYS"]}
+  ],
+  "provisional_exception_guard": {
+    "purpose": "Withhold provisional research eligibility near holidays or likely schedule exceptions; never proves a CME closure.",
+    "rule": "Observed U.S. federal holidays plus Good Friday, Thanksgiving Friday, Christmas Eve, New Year's Eve, and two calendar days on each side.",
+    "source_ids": ["OPM_FEDERAL_HOLIDAYS", "PMC_CME_EQUITY"],
+    "guard_days_each_side": 2,
+    "additional_review_dates": ["2018-12-05", "2025-01-09"]
+  }
+}
