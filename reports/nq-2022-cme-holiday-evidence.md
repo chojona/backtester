@@ -1,0 +1,60 @@
+# NQ W1: original CME 2022 Globex holiday workbook evidence
+
+**Inspected:** 2026-10-14. **Result:** The three original CME `.xls` workbooks were recovered and parsed. Their **Equity Products** rows confirm the observed holiday trading halts and evening reopens. They also identify the **following Tuesday as the Globex trade date for the Sunday-through-Tuesday sequence**. The retained panel instead labels the Sunday/Monday segment with the Monday calendar date. Its timestamps match the CME trading grid, but its holiday trade-date assignment does not. This report records evidence; it changes no tier, production estimator, or HAR fit.
+
+## Acquisition and integrity
+
+The [CME 2022 Globex archive index](https://www.cmegroup.com/content/cmegroup/cn-s/tools-information/holiday-calendar.html) links the three files below. A direct binary `urllib` request from the sandbox failed for each before HTTP with `[Errno 8] nodename nor servname provided, or not known`. A retry with network access reached CME but returned **HTTP 403 Forbidden** for each. The web text reader returned `400 Unsupported content-type: application/vnd.ms-excel`; direct in-app navigation to the Juneteenth file returned `net::ERR_BLOCKED_BY_CLIENT`. Tests of a download query, alternate host, `/content/dam/` path, `.xlsx` suffix, and Internet Archive CDX timed out. A Wayback Juneteenth capture dated 2022-06-20 was visible, but binary replay returned **HTTP 429 Too Many Requests**; July and September archive requests also returned 429. None of those failures supplied workbook bytes.
+
+The working path was the CME archive page's actual Excel link using the browser's file-download facility. All three saved files have the OLE/BIFF `.xls` signature (`Composite Document File V2`), opened with `xlrd 2.0.2`, and were copied unchanged into this evidence directory. No conversion was substituted for an original.
+
+| CME source and preserved original | Size | SHA-256 | Workbook update text; OLE last saved |
+|---|---:|---|---|
+| [Juneteenth](evidence/cme-2022/2022-juneteenth-holiday-schedule.xls) ([CME URL](https://www.cmegroup.com/tools-information/holiday-calendar/files/2022-juneteenth-holiday-schedule.xls)) | 124,928 bytes | `bc9f2caf26a73a13029f177fcc6468bdc8662899ff935f44329ee1a95c8b667b` | `Updated 5/18/2022`; 2022-05-18 16:54:29 (OLE metadata) |
+| [Independence Day](evidence/cme-2022/2022-independence-day-holiday-schedule.xls) ([CME URL](https://www.cmegroup.com/tools-information/holiday-calendar/files/2022-independence-day-holiday-schedule.xls)) | 102,912 bytes | `1ea0459d8aa0fd7ec5147614855f6d0d43607efefdc3aa9c6b1e18ddbfd54fde` | `Updated 6/29/2022`; 2022-06-29 17:46:27 (OLE metadata) |
+| [Labor Day](evidence/cme-2022/2022-labor-day-holiday-schedule.xls) ([CME URL](https://www.cmegroup.com/tools-information/holiday-calendar/files/2022-labor-day-holiday-schedule.xls)) | 105,472 bytes | `28d533f25d1af74af043e411635f1933fd4ff6359c80c049f87f019d2f1d57d0` | `Updated 6/29/2022`; 2022-06-29 17:34:49 (OLE metadata) |
+
+The sizes and hashes above are for the preserved originals. The OLE dates corroborate the visible update dates, but the OLE creation date is a reused 2013 template date and is **not** a 2022 publication date. I found one sheet per file and no internal second version or conflicting NQ row. The Juneteenth note **A77** says “Tuesday, Jun 22,” although June 22, 2022 was Wednesday; that appears to be a weekday/date typo and does not conflict with the explicit **Tuesday, Jun 21** trade-date header and note A76. The CME index warns that schedules can change; the failed historical-snapshot retrieval means I cannot rule out an earlier or later superseding edition solely from these files. No contradictory dated 2022 CME NQ notice surfaced in the targeted source check. The preserved versions, rather than an asserted final revision history, are the basis below.
+
+## Applicable product row and clock
+
+Each sheet has `Equity Products` at **A5**, followed by `Exceptions` at **A6**. The row **A8** mentions “TACO:E-mini S&P, E-mini Nasdaq 100, E-mini Russell 2000”; TACO is a separate exception product and does not override the plain NQ futures group row. CME's [2021 equity-hours notice](https://www.cmegroup.com/notices/electronic-trading/2021/06/20210621.html) and its [affected-product list](https://www.cmegroup.com/content/dam/cmegroup/notices/electronic-trading/2021/06/cme-equity-index-futures-options.pdf) explicitly include `E-MINI NASDAQ 100 FUTURES NQ`. That is the independent product mapping for applying `Equity Products` A5 to NQ outright futures.
+
+The sheet header **A4** says all times are **Central Time**, with `ET +1` and `UTC +5`. These dates are in daylight saving time: Chicago is CDT (UTC−5), New York is EDT (UTC−4). I converted named calendar dates with `zoneinfo` (`America/Chicago` and `America/New_York`), not by treating Excel's time-only serials as UTC. Intervals below are half-open; bars are minute starts. `Pre-opening` permits order entry/modification/cancellation under the workbooks' notes; it is not an active trading minute.
+
+| Holiday calendar day | Applicable cells in row 5 | CME event in CDT | UTC boundary |
+|---|---|---|---|
+| Jun 20 | G5/H5 (Sunday), O5/P5/T5 (Monday) | Jun 19 pre-open 16:00, **open 17:00**; Jun 20 **halt 12:00**, pre-open 12:00, **open 17:00** | Pre-open Jun 19 21:00; active **Jun 19 22:00–Jun 20 17:00**; pre-open/nontrading **Jun 20 17:00–22:00**; active again **Jun 20 22:00** |
+| Jul 4 | G5/H5 (Sunday), N5/R5/S5 (Monday) | Jul 3 pre-open 16:00, **open 17:00**; Jul 4 **halt 12:00**, pre-open 12:00, **open 17:00** | Pre-open Jul 3 21:00; active **Jul 3 22:00–Jul 4 17:00**; pre-open/nontrading **Jul 4 17:00–22:00**; active again **Jul 4 22:00** |
+| Sep 5 | G5/H5 (Sunday), O5/S5/T5 (Monday) | Sep 4 pre-open 16:00, **open 17:00**; Sep 5 **halt 12:00**, pre-open 12:00, **open 17:00** | Pre-open Sep 4 21:00; active **Sep 4 22:00–Sep 5 17:00**; pre-open/nontrading **Sep 5 17:00–22:00**; active again **Sep 5 22:00** |
+
+The holiday interval contains **1,140 active minutes** before the Monday noon-CDT halt. The five hours from the halt to the 17:00-CDT reopen are a holiday halt/pre-open, rather than an ordinary one-hour daily maintenance break. No other halt or pause cell is populated in the applicable row during the active intervals. Friday's regular equity close is 16:00 CDT (21:00 UTC) in B5. The sheets' upper `Trade Date` header **D2** spans the Sunday through Tuesday columns and states **Tuesday, June 21 / July 5 / September 6**, respectively; no Monday trade date is shown for Equity Products. The notes at Juneteenth **A76**, Independence **A75**, and Labor **A74** also say day orders entered after Sunday's pre-opening are for the following Tuesday trade date. This trade-date convention applies to the Sunday/Monday segment **and** the Monday-evening continuation. The regular Tuesday close is 16:00 CDT (21:00 UTC) under the [ordinary NQ regime notice](https://www.cmegroup.com/notices/electronic-trading/2021/06/20210621.html); the Juneteenth and Labor sheets also explicitly say Tuesday has a regular Globex close in their notes. July's workbook does not print a separate Tuesday close time in row 5, so the end of its second segment uses that independently documented ordinary close.
+
+## Independent retained-bar comparison
+
+I rescanned the retained [outright OHLCV Parquet](../results/databento-nq-full-history/nq_outright_ohlcv_1m.parquet) (`SHA-256 16a626bf24c90a73a176e4a21138f58c40e3a5c35ae70a57643c3f1878f94c44`) with `pyarrow`, selected NQU22, generated each UTC minute set from the CME row-5 CDT events, and compared unique timestamp sets, off-grid timestamps, and duplicates. This did not use the W1 matrix's proposed holiday closure to create the grid.
+
+| CME Tuesday trade date | Confirmed active UTC intervals | Expected / retained NQU22 | Missing / extra / duplicate | Retained `trading_date` labels |
+|---|---|---:|---:|---|
+| Jun 21 | Jun 19 22:00–Jun 20 17:00; Jun 20 22:00–Jun 21 21:00 | 2,520 / 2,520 | 0 / 0 / 0 | 1,140 labeled **Jun 20**; 1,380 labeled Jun 21 |
+| Jul 5 | Jul 3 22:00–Jul 4 17:00; Jul 4 22:00–Jul 5 21:00 | 2,520 / 2,520 | 0 / 0 / 0 | 1,140 labeled **Jul 4**; 1,380 labeled Jul 5 |
+| Sep 6 | Sep 4 22:00–Sep 5 17:00; Sep 5 22:00–Sep 6 21:00 | 2,520 / 2,520 | 0 / 0 / 0 | 1,140 labeled **Sep 5**; 1,380 labeled Sep 6 |
+
+Thus the 720 absent minutes in the previous W1 *ordinary Monday* proposal are explained by three documented 240-minute portions of the holiday nontrading interval (17:00–21:00 UTC). The workbook labels the entire **17:00–22:00 UTC** interval as halt/pre-open before the 22:00 UTC reopen; applying the ordinary one-hour maintenance label inside it would misstate the holiday schedule. Timestamp coverage is complete against the confirmed two-segment grids, but **the existing panel's Monday/Tuesday trade-date split conflicts with the CME header**. The previous [W1 audit](nq-w1-calendar-roll-audit.md) correctly left the closures conditional, but its proposed separate Monday trade dates and next-day reopen convention must not be promoted. A versioned calendar reassignment and downstream causal-roll review are needed before certification; this report does not perform either.
+
+## Reassessment of the other 12 guarded dates
+
+The same independent Parquet scan generated the ordinary 1,380-minute UTC grid for each selected contract with `America/New_York`. Every row below has **1,380 unique bars, zero missing, zero extra, and zero duplicates** against that ordinary *timestamp* grid. Full bars do not themselves certify a trade-date boundary or exclude an undocumented exception.
+
+| Guarded date(s) | Selected contract | What the recovered workbooks establish | Status |
+|---|---|---|---|
+| Jun 21; Jul 5; Sep 6 | NQU22 | The observed 1,380-minute calendar-day portions follow the 17:00-CDT Monday reopen, but each is the **continuation of the same Tuesday Globex trade date** that began Sunday evening. | **Trade-date labeling conflicted**; retain guards pending reassignment and dependent roll review. |
+| Jun 22; Jul 6; Sep 7 | NQU22 | The holiday sheets end with the Tuesday regular close (explicit in June/Labor; ordinary regime supplies July). They do not establish every following Wednesday exception boundary. | **Unresolved** for strict per-date certification; retained bars match ordinary timestamps. |
+| Oct 10–12 | NQZ22 | None of the three recovered holiday workbooks covers these dates. The 2022 CME holiday index does not list a corresponding Globex workbook window. | **Unresolved**; no dated NQ-specific October schedule inspected. |
+| Nov 9–11 | NQZ22 | None of the three recovered holiday workbooks covers these dates. The 2022 CME holiday index does not list a corresponding Globex workbook window. | **Unresolved**; no dated NQ-specific November schedule inspected. |
+
+For Jun–Oct guarded ordinary grids, the candidate boundary is previous calendar date **22:00 UTC** to guarded date **21:00 UTC**; for Nov 9–11 it is **23:00–22:00 UTC** after the DST change. The six June–September adjacent dates require special care because the CME Tuesday trade-date convention contradicts the current partition even when the timestamps are full. No unsupported guard is released, and the four isolated W1 minute holes and June 6 predecessor hole remain separate unresolved evidence items.
+
+## Revision and scope verdict
+
+The inspected workbooks have explicit update dates and no contradictory NQ row within each file. A targeted check of CME's public archive and notices did not reveal a dated conflicting 2022 NQ schedule, but archive replay limits prevent a complete revision history claim. The strongest supported conclusion is: **all three holiday active-minute patterns are verified from original CME files and match retained NQU22 timestamps exactly; their authoritative Tuesday trade-date convention does not match the retained Monday labels.** W1 remains blocked pending a corrected trade-date mapping, causal predecessor re-evaluation, and the still-unresolved guarded dates/minute-status evidence. No paid Databento request was made.

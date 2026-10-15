@@ -15,9 +15,11 @@ This acceptance covers the retained acquisition and measurement pipeline, not
 other dates, holiday/DST transitions, trading performance or forecasts. See the
 [dated acceptance report](docs/acceptance/databento-2026-10-07.md).
 
-Full-history preparation and approval-gated acquisition scripts are available;
-full-history normalization and acceptance remain pending. HAR/GARCH/ML forecasting,
-optimization and live trading are not implemented.
+Full-history NQ acquisition and normalization have been audited. Only 11 sessions
+meet the strict Tier A research gate; the rest remain provisional or excluded.
+A synthetic-data HAR-RV fitting and evaluation module is available through the
+optional `nq-har-research` extra. No historical HAR model has been fit. GARCH/ML
+forecasting, optimization and live trading are not implemented.
 
 ## Setup
 
@@ -115,7 +117,9 @@ python -m backtester volatility --data data/synthetic_NQ_1m.csv --symbol NQ
 
 Commit source, tests, configuration templates, calendar references, documentation
 and the bundled synthetic fixtures. `.gitignore` excludes `.env` and its variants,
-Python environments, caches, build artifacts, generated reports and all other data.
+Python environments, caches, build artifacts, local `results/` outputs and all
+other market data. Reviewed research notes in `reports/` are publishable source
+documentation; verify each file before staging it.
 Keep licensed downloads and local research outputs outside Git. Detailed acceptance evidence JSON under
 `docs/acceptance/` is also ignored; the review notes and checker scripts remain
 publishable.

@@ -1,0 +1,5675 @@
+{
+  "schema_version": "1.0",
+  "candidate_version": "nq-2022-holiday-candidate-v1",
+  "status": "RESEARCH_CANDIDATE_NOT_CERTIFIED",
+  "scope": {
+    "first": "2022-06-07",
+    "last": "2022-11-21"
+  },
+  "source_sha256": {
+    "parquet": "16a626bf24c90a73a176e4a21138f58c40e3a5c35ae70a57643c3f1878f94c44",
+    "phase3_ledger": "8f539c28a437f5e13266f15ad048cb11f87ccd51d13cdcaa3dac59eb8c23d40c"
+  },
+  "cme_workbooks": {
+    "2022-06-21": {
+      "path": "reports/evidence/cme-2022/2022-juneteenth-holiday-schedule.xls",
+      "sha256": "bc9f2caf26a73a13029f177fcc6468bdc8662899ff935f44329ee1a95c8b667b",
+      "equity_product_cells": "G5/H5; O5/P5/T5; D2; A76"
+    },
+    "2022-07-05": {
+      "path": "reports/evidence/cme-2022/2022-independence-day-holiday-schedule.xls",
+      "sha256": "1ea0459d8aa0fd7ec5147614855f6d0d43607efefdc3aa9c6b1e18ddbfd54fde",
+      "equity_product_cells": "G5/H5; N5/R5/S5; D2; A75"
+    },
+    "2022-09-06": {
+      "path": "reports/evidence/cme-2022/2022-labor-day-holiday-schedule.xls",
+      "sha256": "28d533f25d1af74af043e411635f1933fd4ff6359c80c049f87f019d2f1d57d0",
+      "equity_product_cells": "G5/H5; O5/S5/T5; D2; A74"
+    }
+  },
+  "convention": {
+    "time_zone": "America/New_York",
+    "intervals": "half-open UTC minute starts",
+    "returns": "first bar log(close/open), later bars log(close/previous close), reset at each active-segment opening",
+    "bpv": "(pi/2) sum of adjacent absolute return products within each active interval and the same OVERNIGHT/RTH/POST_RTH research segment only",
+    "selection": "current contract universe ranked by previous completed CME trade-date retained volume; contract code breaks ties"
+  },
+  "changed_winners": [],
+  "remapping_dependencies": [
+    {
+      "removed_historical_monday_label": "2022-06-20",
+      "official_tuesday_trade_date": "2022-06-21",
+      "causal_selection_recomputed_on": [
+        "2022-06-21",
+        "2022-06-22"
+      ],
+      "variation_recomputed_on": "2022-06-21",
+      "downstream": [
+        "trade_date_ordinals",
+        "5_session_HAR_windows",
+        "22_session_HAR_windows",
+        "forecast_origins_and_targets"
+      ]
+    },
+    {
+      "removed_historical_monday_label": "2022-07-04",
+      "official_tuesday_trade_date": "2022-07-05",
+      "causal_selection_recomputed_on": [
+        "2022-07-05",
+        "2022-07-06"
+      ],
+      "variation_recomputed_on": "2022-07-05",
+      "downstream": [
+        "trade_date_ordinals",
+        "5_session_HAR_windows",
+        "22_session_HAR_windows",
+        "forecast_origins_and_targets"
+      ]
+    },
+    {
+      "removed_historical_monday_label": "2022-09-05",
+      "official_tuesday_trade_date": "2022-09-06",
+      "causal_selection_recomputed_on": [
+        "2022-09-06",
+        "2022-09-07"
+      ],
+      "variation_recomputed_on": "2022-09-06",
+      "downstream": [
+        "trade_date_ordinals",
+        "5_session_HAR_windows",
+        "22_session_HAR_windows",
+        "forecast_origins_and_targets"
+      ]
+    }
+  ],
+  "trade_dates": [
+    {
+      "trade_date": "2022-06-07",
+      "predecessor_trade_date": "2022-06-06",
+      "segments": [
+        {
+          "start_utc": "2022-06-06T22:00:00+00:00",
+          "end_utc": "2022-06-07T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002665725512557129,
+          "bpv_within_segment": 0.0002358437664379256,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00025260473468777895
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQM22",
+      "historical_selected_contract": "NQM22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 531252,
+          "current_trade_date_volume": 572999
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 2933,
+          "current_trade_date_volume": 4804
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 11,
+          "current_trade_date_volume": 47
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-08",
+      "predecessor_trade_date": "2022-06-07",
+      "segments": [
+        {
+          "start_utc": "2022-06-07T22:00:00+00:00",
+          "end_utc": "2022-06-08T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00020827962545110764,
+          "bpv_within_segment": 0.00020817835991521604,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002473987374167196
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQM22",
+      "historical_selected_contract": "NQM22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 572999,
+          "current_trade_date_volume": 569423
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 4804,
+          "current_trade_date_volume": 5393
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 47,
+          "current_trade_date_volume": 20
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-09",
+      "predecessor_trade_date": "2022-06-08",
+      "segments": [
+        {
+          "start_utc": "2022-06-08T22:00:00+00:00",
+          "end_utc": "2022-06-09T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00030317252185647046,
+          "bpv_within_segment": 0.00028737377700701906,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00033155228192453454
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQM22",
+      "historical_selected_contract": "NQM22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 569423,
+          "current_trade_date_volume": 653279
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 5393,
+          "current_trade_date_volume": 34330
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 20,
+          "current_trade_date_volume": 50
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-10",
+      "predecessor_trade_date": "2022-06-09",
+      "segments": [
+        {
+          "start_utc": "2022-06-09T22:00:00+00:00",
+          "end_utc": "2022-06-10T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000665216848113818,
+          "bpv_within_segment": 0.000538619933968452,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0007825218724197983
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQM22",
+      "historical_selected_contract": "NQM22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 653279,
+          "current_trade_date_volume": 549856
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 34330,
+          "current_trade_date_volume": 325742
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 50,
+          "current_trade_date_volume": 136
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-13",
+      "predecessor_trade_date": "2022-06-10",
+      "segments": [
+        {
+          "start_utc": "2022-06-12T22:00:00+00:00",
+          "end_utc": "2022-06-13T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00062107935462275,
+          "bpv_within_segment": 0.0005806370832921031,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005088690336318083
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQM22",
+      "historical_selected_contract": "NQM22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 549856,
+          "current_trade_date_volume": 387941
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 325742,
+          "current_trade_date_volume": 610767
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 136,
+          "current_trade_date_volume": 268
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-14",
+      "predecessor_trade_date": "2022-06-13",
+      "segments": [
+        {
+          "start_utc": "2022-06-13T22:00:00+00:00",
+          "end_utc": "2022-06-14T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0005205955833791147,
+          "bpv_within_segment": 0.0005216277563219267,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.000569526499339823
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 610767,
+          "current_trade_date_volume": 606593
+        },
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 387941,
+          "current_trade_date_volume": 288818
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 268,
+          "current_trade_date_volume": 216
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-15",
+      "predecessor_trade_date": "2022-06-14",
+      "segments": [
+        {
+          "start_utc": "2022-06-14T22:00:00+00:00",
+          "end_utc": "2022-06-15T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0008767553949302165,
+          "bpv_within_segment": 0.0008938303836047163,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0009304187276350698
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 606593,
+          "current_trade_date_volume": 700856
+        },
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 288818,
+          "current_trade_date_volume": 217883
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 216,
+          "current_trade_date_volume": 217
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-16",
+      "predecessor_trade_date": "2022-06-15",
+      "segments": [
+        {
+          "start_utc": "2022-06-15T22:00:00+00:00",
+          "end_utc": "2022-06-16T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0006071718505313648,
+          "bpv_within_segment": 0.0005892747136298413,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005447498079536576
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 700856,
+          "current_trade_date_volume": 792262
+        },
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 217883,
+          "current_trade_date_volume": 107880
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 217,
+          "current_trade_date_volume": 364
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-17",
+      "predecessor_trade_date": "2022-06-16",
+      "segments": [
+        {
+          "start_utc": "2022-06-16T22:00:00+00:00",
+          "end_utc": "2022-06-17T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0005478180140157727,
+          "bpv_within_segment": 0.0005418224605961318,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005717288352272059
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 792262,
+          "current_trade_date_volume": 714314
+        },
+        {
+          "contract": "NQM22",
+          "predecessor_volume": 107880,
+          "current_trade_date_volume": 7743
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 364,
+          "current_trade_date_volume": 640
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-21",
+      "predecessor_trade_date": "2022-06-17",
+      "segments": [
+        {
+          "start_utc": "2022-06-19T22:00:00+00:00",
+          "end_utc": "2022-06-20T17:00:00+00:00",
+          "expected_minutes": 1140,
+          "observed_bars": 1140,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00014873266758765828,
+          "bpv_within_segment": 0.00015328626252923827,
+          "five_minute_complete_blocks": 228,
+          "rv_5m_segment_anchored": 0.00013721656599643796
+        },
+        {
+          "start_utc": "2022-06-20T22:00:00+00:00",
+          "end_utc": "2022-06-21T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00019832484282898225,
+          "bpv_within_segment": 0.00019754051462147443,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001834061814742194
+        }
+      ],
+      "expected_minutes": 2520,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 714314,
+          "current_trade_date_volume": 647288
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 640,
+          "current_trade_date_volume": 292
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0,
+      "nontrading_halt_preopen_utc": {
+        "start": "2022-06-20T17:00:00+00:00",
+        "end": "2022-06-20T22:00:00+00:00"
+      },
+      "combined_rv_1m": 0.0003470575104166405,
+      "combined_bpv_no_cross_halt_pair": 0.0003508267771507127
+    },
+    {
+      "trade_date": "2022-06-22",
+      "predecessor_trade_date": "2022-06-21",
+      "segments": [
+        {
+          "start_utc": "2022-06-21T22:00:00+00:00",
+          "end_utc": "2022-06-22T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003697607153233274,
+          "bpv_within_segment": 0.00034868637141456486,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003671759203380621
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 647288,
+          "current_trade_date_volume": 626659
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 292,
+          "current_trade_date_volume": 366
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-23",
+      "predecessor_trade_date": "2022-06-22",
+      "segments": [
+        {
+          "start_utc": "2022-06-22T22:00:00+00:00",
+          "end_utc": "2022-06-23T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0004435105875325769,
+          "bpv_within_segment": 0.0004194157438431161,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0004456601673356768
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 626659,
+          "current_trade_date_volume": 621938
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 366,
+          "current_trade_date_volume": 381
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-24",
+      "predecessor_trade_date": "2022-06-23",
+      "segments": [
+        {
+          "start_utc": "2022-06-23T22:00:00+00:00",
+          "end_utc": "2022-06-24T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00022800658708457594,
+          "bpv_within_segment": 0.00019970040403020816,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00025650292228060283
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 621938,
+          "current_trade_date_volume": 552725
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 381,
+          "current_trade_date_volume": 277
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-27",
+      "predecessor_trade_date": "2022-06-24",
+      "segments": [
+        {
+          "start_utc": "2022-06-26T22:00:00+00:00",
+          "end_utc": "2022-06-27T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000303219380937935,
+          "bpv_within_segment": 0.00030860108345802796,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003479339481262311
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 552725,
+          "current_trade_date_volume": 554311
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 277,
+          "current_trade_date_volume": 432
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-28",
+      "predecessor_trade_date": "2022-06-27",
+      "segments": [
+        {
+          "start_utc": "2022-06-27T22:00:00+00:00",
+          "end_utc": "2022-06-28T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002975966846804232,
+          "bpv_within_segment": 0.00028859890599084896,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00032485125491888166
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 554311,
+          "current_trade_date_volume": 627054
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 432,
+          "current_trade_date_volume": 371
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-29",
+      "predecessor_trade_date": "2022-06-28",
+      "segments": [
+        {
+          "start_utc": "2022-06-28T22:00:00+00:00",
+          "end_utc": "2022-06-29T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00040528575416525685,
+          "bpv_within_segment": 0.00038143118637700134,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003861649054079375
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 627054,
+          "current_trade_date_volume": 579224
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 371,
+          "current_trade_date_volume": 320
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-06-30",
+      "predecessor_trade_date": "2022-06-29",
+      "segments": [
+        {
+          "start_utc": "2022-06-29T22:00:00+00:00",
+          "end_utc": "2022-06-30T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00048763473442238497,
+          "bpv_within_segment": 0.0004475390071576966,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005647676377932401
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 579224,
+          "current_trade_date_volume": 730730
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 320,
+          "current_trade_date_volume": 598
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-01",
+      "predecessor_trade_date": "2022-06-30",
+      "segments": [
+        {
+          "start_utc": "2022-06-30T22:00:00+00:00",
+          "end_utc": "2022-07-01T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00046392949606775883,
+          "bpv_within_segment": 0.00045221912972539125,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00045884975375967186
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 730730,
+          "current_trade_date_volume": 601348
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 598,
+          "current_trade_date_volume": 333
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-05",
+      "predecessor_trade_date": "2022-07-01",
+      "segments": [
+        {
+          "start_utc": "2022-07-03T22:00:00+00:00",
+          "end_utc": "2022-07-04T17:00:00+00:00",
+          "expected_minutes": 1140,
+          "observed_bars": 1140,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 7.889172279741338e-05,
+          "bpv_within_segment": 7.667329180718377e-05,
+          "five_minute_complete_blocks": 228,
+          "rv_5m_segment_anchored": 7.0457649802568e-05
+        },
+        {
+          "start_utc": "2022-07-04T22:00:00+00:00",
+          "end_utc": "2022-07-05T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000391497729154199,
+          "bpv_within_segment": 0.00038180375195439394,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0004351549030980653
+        }
+      ],
+      "expected_minutes": 2520,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 601348,
+          "current_trade_date_volume": 783859
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 333,
+          "current_trade_date_volume": 450
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0,
+      "nontrading_halt_preopen_utc": {
+        "start": "2022-07-04T17:00:00+00:00",
+        "end": "2022-07-04T22:00:00+00:00"
+      },
+      "combined_rv_1m": 0.0004703894519516124,
+      "combined_bpv_no_cross_halt_pair": 0.0004584770437615777
+    },
+    {
+      "trade_date": "2022-07-06",
+      "predecessor_trade_date": "2022-07-05",
+      "segments": [
+        {
+          "start_utc": "2022-07-05T22:00:00+00:00",
+          "end_utc": "2022-07-06T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0004490204009562281,
+          "bpv_within_segment": 0.0003936424553193198,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0004953821955175907
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 783859,
+          "current_trade_date_volume": 641910
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 450,
+          "current_trade_date_volume": 310
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-07",
+      "predecessor_trade_date": "2022-07-06",
+      "segments": [
+        {
+          "start_utc": "2022-07-06T22:00:00+00:00",
+          "end_utc": "2022-07-07T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00017309009084055845,
+          "bpv_within_segment": 0.0001636001580320501,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00014628013259300785
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 641910,
+          "current_trade_date_volume": 539083
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 310,
+          "current_trade_date_volume": 353
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-08",
+      "predecessor_trade_date": "2022-07-07",
+      "segments": [
+        {
+          "start_utc": "2022-07-07T22:00:00+00:00",
+          "end_utc": "2022-07-08T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00023513048457978085,
+          "bpv_within_segment": 0.00021235602418290549,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002737176612048337
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 539083,
+          "current_trade_date_volume": 630490
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 353,
+          "current_trade_date_volume": 466
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-11",
+      "predecessor_trade_date": "2022-07-08",
+      "segments": [
+        {
+          "start_utc": "2022-07-10T22:00:00+00:00",
+          "end_utc": "2022-07-11T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002088354660734093,
+          "bpv_within_segment": 0.00021108525511199134,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00022169742232151383
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 630490,
+          "current_trade_date_volume": 569183
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 466,
+          "current_trade_date_volume": 239
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-12",
+      "predecessor_trade_date": "2022-07-11",
+      "segments": [
+        {
+          "start_utc": "2022-07-11T22:00:00+00:00",
+          "end_utc": "2022-07-12T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002700812488531145,
+          "bpv_within_segment": 0.0002467503425853087,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00032093625013100675
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 569183,
+          "current_trade_date_volume": 603608
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 239,
+          "current_trade_date_volume": 266
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 13
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-13",
+      "predecessor_trade_date": "2022-07-12",
+      "segments": [
+        {
+          "start_utc": "2022-07-12T22:00:00+00:00",
+          "end_utc": "2022-07-13T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0013667262063316915,
+          "bpv_within_segment": 0.0009495664922770926,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0016674910527613137
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 603608,
+          "current_trade_date_volume": 728825
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 266,
+          "current_trade_date_volume": 376
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-14",
+      "predecessor_trade_date": "2022-07-13",
+      "segments": [
+        {
+          "start_utc": "2022-07-13T22:00:00+00:00",
+          "end_utc": "2022-07-14T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003896464348231757,
+          "bpv_within_segment": 0.0003765069856771455,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003178186023176374
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 728825,
+          "current_trade_date_volume": 647926
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 376,
+          "current_trade_date_volume": 323
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-15",
+      "predecessor_trade_date": "2022-07-14",
+      "segments": [
+        {
+          "start_utc": "2022-07-14T22:00:00+00:00",
+          "end_utc": "2022-07-15T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002846215340589968,
+          "bpv_within_segment": 0.00024920068379735884,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00021870769495802218
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 647926,
+          "current_trade_date_volume": 550861
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 323,
+          "current_trade_date_volume": 404
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-18",
+      "predecessor_trade_date": "2022-07-15",
+      "segments": [
+        {
+          "start_utc": "2022-07-17T22:00:00+00:00",
+          "end_utc": "2022-07-18T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0001814932438234429,
+          "bpv_within_segment": 0.00018622536388320976,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001705421376385171
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 550861,
+          "current_trade_date_volume": 545318
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 404,
+          "current_trade_date_volume": 400
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-19",
+      "predecessor_trade_date": "2022-07-18",
+      "segments": [
+        {
+          "start_utc": "2022-07-18T22:00:00+00:00",
+          "end_utc": "2022-07-19T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00014430226706438294,
+          "bpv_within_segment": 0.00014018677240641646,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00017245540460161712
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 545318,
+          "current_trade_date_volume": 577279
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 400,
+          "current_trade_date_volume": 346
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-20",
+      "predecessor_trade_date": "2022-07-19",
+      "segments": [
+        {
+          "start_utc": "2022-07-19T22:00:00+00:00",
+          "end_utc": "2022-07-20T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00020865216095370035,
+          "bpv_within_segment": 0.00019793021592974202,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002383633749206209
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 577279,
+          "current_trade_date_volume": 637081
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 346,
+          "current_trade_date_volume": 442
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-21",
+      "predecessor_trade_date": "2022-07-20",
+      "segments": [
+        {
+          "start_utc": "2022-07-20T22:00:00+00:00",
+          "end_utc": "2022-07-21T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00031729771498247873,
+          "bpv_within_segment": 0.0002985654294814721,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00029021668525756
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 637081,
+          "current_trade_date_volume": 597990
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 442,
+          "current_trade_date_volume": 296
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-22",
+      "predecessor_trade_date": "2022-07-21",
+      "segments": [
+        {
+          "start_utc": "2022-07-21T22:00:00+00:00",
+          "end_utc": "2022-07-22T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00022999134893254724,
+          "bpv_within_segment": 0.00023881432159993687,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00022355189111710367
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 597990,
+          "current_trade_date_volume": 624236
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 296,
+          "current_trade_date_volume": 384
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 6
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-25",
+      "predecessor_trade_date": "2022-07-22",
+      "segments": [
+        {
+          "start_utc": "2022-07-24T22:00:00+00:00",
+          "end_utc": "2022-07-25T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00020167953065542492,
+          "bpv_within_segment": 0.00019762950348915502,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00017414788102957773
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 624236,
+          "current_trade_date_volume": 486408
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 384,
+          "current_trade_date_volume": 221
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 6,
+          "current_trade_date_volume": 23
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-26",
+      "predecessor_trade_date": "2022-07-25",
+      "segments": [
+        {
+          "start_utc": "2022-07-25T22:00:00+00:00",
+          "end_utc": "2022-07-26T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00016229774728097134,
+          "bpv_within_segment": 0.00016208619293435418,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001521574991569793
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 486408,
+          "current_trade_date_volume": 528799
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 221,
+          "current_trade_date_volume": 263
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 23,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-27",
+      "predecessor_trade_date": "2022-07-26",
+      "segments": [
+        {
+          "start_utc": "2022-07-26T22:00:00+00:00",
+          "end_utc": "2022-07-27T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1379,
+          "missing_minutes_utc": [
+            "2022-07-27T03:56:00+00:00"
+          ],
+          "duplicate_bars": 0,
+          "rv_1m": null,
+          "bpv_within_segment": null,
+          "five_minute_complete_blocks": 0,
+          "rv_5m_segment_anchored": null
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 528799,
+          "current_trade_date_volume": 623675
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 263,
+          "current_trade_date_volume": 585
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 13
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_SPARSE_OR_OFF_SCHEDULE_TRADE_BARS",
+      "coverage_complete_against_candidate_grid": false,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-28",
+      "predecessor_trade_date": "2022-07-27",
+      "segments": [
+        {
+          "start_utc": "2022-07-27T22:00:00+00:00",
+          "end_utc": "2022-07-28T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000317456707145703,
+          "bpv_within_segment": 0.00028473818104294044,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00026123492046228576
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 623675,
+          "current_trade_date_volume": 640692
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 585,
+          "current_trade_date_volume": 474
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 13,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-07-29",
+      "predecessor_trade_date": "2022-07-28",
+      "segments": [
+        {
+          "start_utc": "2022-07-28T22:00:00+00:00",
+          "end_utc": "2022-07-29T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00015564102735697108,
+          "bpv_within_segment": 0.00015802304838253607,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00016089921630425269
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 640692,
+          "current_trade_date_volume": 578149
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 474,
+          "current_trade_date_volume": 489
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-01",
+      "predecessor_trade_date": "2022-07-29",
+      "segments": [
+        {
+          "start_utc": "2022-07-31T22:00:00+00:00",
+          "end_utc": "2022-08-01T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00020653453858699507,
+          "bpv_within_segment": 0.00021281693024159887,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00023007633918879783
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 578149,
+          "current_trade_date_volume": 616110
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 489,
+          "current_trade_date_volume": 477
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-02",
+      "predecessor_trade_date": "2022-08-01",
+      "segments": [
+        {
+          "start_utc": "2022-08-01T22:00:00+00:00",
+          "end_utc": "2022-08-02T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002389091718893293,
+          "bpv_within_segment": 0.00023742073796788384,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00024317776347933105
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 616110,
+          "current_trade_date_volume": 669981
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 477,
+          "current_trade_date_volume": 446
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 5,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-03",
+      "predecessor_trade_date": "2022-08-02",
+      "segments": [
+        {
+          "start_utc": "2022-08-02T22:00:00+00:00",
+          "end_utc": "2022-08-03T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0001655355032158929,
+          "bpv_within_segment": 0.00016137252117238532,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001567025547839129
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 669981,
+          "current_trade_date_volume": 680002
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 446,
+          "current_trade_date_volume": 415
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-04",
+      "predecessor_trade_date": "2022-08-03",
+      "segments": [
+        {
+          "start_utc": "2022-08-03T22:00:00+00:00",
+          "end_utc": "2022-08-04T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00017901121504349066,
+          "bpv_within_segment": 0.00017787132571382404,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001706753172794246
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 680002,
+          "current_trade_date_volume": 538038
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 415,
+          "current_trade_date_volume": 279
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-05",
+      "predecessor_trade_date": "2022-08-04",
+      "segments": [
+        {
+          "start_utc": "2022-08-04T22:00:00+00:00",
+          "end_utc": "2022-08-05T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002989163241993479,
+          "bpv_within_segment": 0.00020025580833880088,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003165692609982779
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 538038,
+          "current_trade_date_volume": 681251
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 279,
+          "current_trade_date_volume": 350
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 5,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-08",
+      "predecessor_trade_date": "2022-08-05",
+      "segments": [
+        {
+          "start_utc": "2022-08-07T22:00:00+00:00",
+          "end_utc": "2022-08-08T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0001923238431481501,
+          "bpv_within_segment": 0.00017834851538264186,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00025030937706067375
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 681251,
+          "current_trade_date_volume": 592709
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 350,
+          "current_trade_date_volume": 318
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-09",
+      "predecessor_trade_date": "2022-08-08",
+      "segments": [
+        {
+          "start_utc": "2022-08-08T22:00:00+00:00",
+          "end_utc": "2022-08-09T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00015259433717985056,
+          "bpv_within_segment": 0.00013720061642175118,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00015883667805308846
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 592709,
+          "current_trade_date_volume": 547918
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 318,
+          "current_trade_date_volume": 785
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-10",
+      "predecessor_trade_date": "2022-08-09",
+      "segments": [
+        {
+          "start_utc": "2022-08-09T22:00:00+00:00",
+          "end_utc": "2022-08-10T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003658137372570308,
+          "bpv_within_segment": 0.0003017175574249154,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0004509186783560795
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 547918,
+          "current_trade_date_volume": 596246
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 785,
+          "current_trade_date_volume": 530
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 6
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-11",
+      "predecessor_trade_date": "2022-08-10",
+      "segments": [
+        {
+          "start_utc": "2022-08-10T22:00:00+00:00",
+          "end_utc": "2022-08-11T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0001541932139053191,
+          "bpv_within_segment": 0.0001525657725956606,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00015723077374394336
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 596246,
+          "current_trade_date_volume": 612298
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 530,
+          "current_trade_date_volume": 529
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 6,
+          "current_trade_date_volume": 10
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-12",
+      "predecessor_trade_date": "2022-08-11",
+      "segments": [
+        {
+          "start_utc": "2022-08-11T22:00:00+00:00",
+          "end_utc": "2022-08-12T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00012132125725975188,
+          "bpv_within_segment": 0.000117388984591784,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 9.50259129488328e-05
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 612298,
+          "current_trade_date_volume": 494268
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 529,
+          "current_trade_date_volume": 401
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 10,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-15",
+      "predecessor_trade_date": "2022-08-12",
+      "segments": [
+        {
+          "start_utc": "2022-08-14T22:00:00+00:00",
+          "end_utc": "2022-08-15T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 9.609982429019275e-05,
+          "bpv_within_segment": 9.416343973372602e-05,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00011609890512732587
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 494268,
+          "current_trade_date_volume": 458277
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 401,
+          "current_trade_date_volume": 400
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 14
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-16",
+      "predecessor_trade_date": "2022-08-15",
+      "segments": [
+        {
+          "start_utc": "2022-08-15T22:00:00+00:00",
+          "end_utc": "2022-08-16T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1379,
+          "missing_minutes_utc": [
+            "2022-08-16T04:43:00+00:00"
+          ],
+          "duplicate_bars": 0,
+          "rv_1m": null,
+          "bpv_within_segment": null,
+          "five_minute_complete_blocks": 0,
+          "rv_5m_segment_anchored": null
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 458277,
+          "current_trade_date_volume": 550629
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 400,
+          "current_trade_date_volume": 460
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 14,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_SPARSE_OR_OFF_SCHEDULE_TRADE_BARS",
+      "coverage_complete_against_candidate_grid": false,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-17",
+      "predecessor_trade_date": "2022-08-16",
+      "segments": [
+        {
+          "start_utc": "2022-08-16T22:00:00+00:00",
+          "end_utc": "2022-08-17T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00019395956774597537,
+          "bpv_within_segment": 0.00019061255152889796,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00014594362270149185
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 550629,
+          "current_trade_date_volume": 606216
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 460,
+          "current_trade_date_volume": 565
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-18",
+      "predecessor_trade_date": "2022-08-17",
+      "segments": [
+        {
+          "start_utc": "2022-08-17T22:00:00+00:00",
+          "end_utc": "2022-08-18T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1379,
+          "missing_minutes_utc": [
+            "2022-08-18T04:42:00+00:00"
+          ],
+          "duplicate_bars": 0,
+          "rv_1m": null,
+          "bpv_within_segment": null,
+          "five_minute_complete_blocks": 0,
+          "rv_5m_segment_anchored": null
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 606216,
+          "current_trade_date_volume": 520545
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 565,
+          "current_trade_date_volume": 557
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_SPARSE_OR_OFF_SCHEDULE_TRADE_BARS",
+      "coverage_complete_against_candidate_grid": false,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-19",
+      "predecessor_trade_date": "2022-08-18",
+      "segments": [
+        {
+          "start_utc": "2022-08-18T22:00:00+00:00",
+          "end_utc": "2022-08-19T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00010680569037250813,
+          "bpv_within_segment": 0.0001114229875798519,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 7.893011309086894e-05
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 520545,
+          "current_trade_date_volume": 609495
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 557,
+          "current_trade_date_volume": 589
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 9
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-22",
+      "predecessor_trade_date": "2022-08-19",
+      "segments": [
+        {
+          "start_utc": "2022-08-21T22:00:00+00:00",
+          "end_utc": "2022-08-22T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00011836044389883558,
+          "bpv_within_segment": 0.00011938341951424336,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001395863057303271
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 609495,
+          "current_trade_date_volume": 588481
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 589,
+          "current_trade_date_volume": 769
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 9,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-23",
+      "predecessor_trade_date": "2022-08-22",
+      "segments": [
+        {
+          "start_utc": "2022-08-22T22:00:00+00:00",
+          "end_utc": "2022-08-23T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00018477760088862877,
+          "bpv_within_segment": 0.00018545778180197877,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002406986992550533
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 588481,
+          "current_trade_date_volume": 566716
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 769,
+          "current_trade_date_volume": 645
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-24",
+      "predecessor_trade_date": "2022-08-23",
+      "segments": [
+        {
+          "start_utc": "2022-08-23T22:00:00+00:00",
+          "end_utc": "2022-08-24T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00013717844054435702,
+          "bpv_within_segment": 0.0001375087126235917,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00010791354652971205
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 566716,
+          "current_trade_date_volume": 497726
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 645,
+          "current_trade_date_volume": 326
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 5,
+          "current_trade_date_volume": 11
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-25",
+      "predecessor_trade_date": "2022-08-24",
+      "segments": [
+        {
+          "start_utc": "2022-08-24T22:00:00+00:00",
+          "end_utc": "2022-08-25T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00016527280278407102,
+          "bpv_within_segment": 0.0001401801140532142,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00015756735331501885
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 497726,
+          "current_trade_date_volume": 535226
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 326,
+          "current_trade_date_volume": 892
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 11,
+          "current_trade_date_volume": 7
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-26",
+      "predecessor_trade_date": "2022-08-25",
+      "segments": [
+        {
+          "start_utc": "2022-08-25T22:00:00+00:00",
+          "end_utc": "2022-08-26T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003980219563117987,
+          "bpv_within_segment": 0.00030228302298838147,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005380989735272237
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 535226,
+          "current_trade_date_volume": 742005
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 892,
+          "current_trade_date_volume": 1066
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 7,
+          "current_trade_date_volume": 24
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-29",
+      "predecessor_trade_date": "2022-08-26",
+      "segments": [
+        {
+          "start_utc": "2022-08-28T22:00:00+00:00",
+          "end_utc": "2022-08-29T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003077933969684708,
+          "bpv_within_segment": 0.00030619274040849385,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00031848280115652684
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 742005,
+          "current_trade_date_volume": 690307
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 1066,
+          "current_trade_date_volume": 1151
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 24,
+          "current_trade_date_volume": 15
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-30",
+      "predecessor_trade_date": "2022-08-29",
+      "segments": [
+        {
+          "start_utc": "2022-08-29T22:00:00+00:00",
+          "end_utc": "2022-08-30T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002660064037061057,
+          "bpv_within_segment": 0.0002366520504253999,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002914798791253209
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 690307,
+          "current_trade_date_volume": 791611
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 1151,
+          "current_trade_date_volume": 1189
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 15,
+          "current_trade_date_volume": 11
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-08-31",
+      "predecessor_trade_date": "2022-08-30",
+      "segments": [
+        {
+          "start_utc": "2022-08-30T22:00:00+00:00",
+          "end_utc": "2022-08-31T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00032216431197796066,
+          "bpv_within_segment": 0.00030434274253882235,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002859888240379278
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 791611,
+          "current_trade_date_volume": 665188
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 1189,
+          "current_trade_date_volume": 1366
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 11,
+          "current_trade_date_volume": 18
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-01",
+      "predecessor_trade_date": "2022-08-31",
+      "segments": [
+        {
+          "start_utc": "2022-08-31T22:00:00+00:00",
+          "end_utc": "2022-09-01T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00032460715426549933,
+          "bpv_within_segment": 0.00030507415522403053,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00030983294712014887
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 665188,
+          "current_trade_date_volume": 817207
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 1366,
+          "current_trade_date_volume": 2181
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 18,
+          "current_trade_date_volume": 24
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-02",
+      "predecessor_trade_date": "2022-09-01",
+      "segments": [
+        {
+          "start_utc": "2022-09-01T22:00:00+00:00",
+          "end_utc": "2022-09-02T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00042106243149475024,
+          "bpv_within_segment": 0.00039537470768669504,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00043825301159461193
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 817207,
+          "current_trade_date_volume": 827044
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 2181,
+          "current_trade_date_volume": 2322
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 24,
+          "current_trade_date_volume": 22
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-06",
+      "predecessor_trade_date": "2022-09-02",
+      "segments": [
+        {
+          "start_utc": "2022-09-04T22:00:00+00:00",
+          "end_utc": "2022-09-05T17:00:00+00:00",
+          "expected_minutes": 1140,
+          "observed_bars": 1140,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 8.743280816422064e-05,
+          "bpv_within_segment": 8.28996177321956e-05,
+          "five_minute_complete_blocks": 228,
+          "rv_5m_segment_anchored": 9.505491582559677e-05
+        },
+        {
+          "start_utc": "2022-09-05T22:00:00+00:00",
+          "end_utc": "2022-09-06T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00037804031113952864,
+          "bpv_within_segment": 0.0003815075919728469,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003331471373764743
+        }
+      ],
+      "expected_minutes": 2520,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 827044,
+          "current_trade_date_volume": 884782
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 2322,
+          "current_trade_date_volume": 6356
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 22,
+          "current_trade_date_volume": 18
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0,
+      "nontrading_halt_preopen_utc": {
+        "start": "2022-09-05T17:00:00+00:00",
+        "end": "2022-09-05T22:00:00+00:00"
+      },
+      "combined_rv_1m": 0.0004654731193037493,
+      "combined_bpv_no_cross_halt_pair": 0.0004644072097050425
+    },
+    {
+      "trade_date": "2022-09-07",
+      "predecessor_trade_date": "2022-09-06",
+      "segments": [
+        {
+          "start_utc": "2022-09-06T22:00:00+00:00",
+          "end_utc": "2022-09-07T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00022114950160910442,
+          "bpv_within_segment": 0.0002164499685120281,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00024057435480413685
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 884782,
+          "current_trade_date_volume": 667355
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 6356,
+          "current_trade_date_volume": 5839
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 18,
+          "current_trade_date_volume": 21
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-08",
+      "predecessor_trade_date": "2022-09-07",
+      "segments": [
+        {
+          "start_utc": "2022-09-07T22:00:00+00:00",
+          "end_utc": "2022-09-08T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00033193233721325375,
+          "bpv_within_segment": 0.0003233793769314143,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003568281321452292
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 667355,
+          "current_trade_date_volume": 716074
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 5839,
+          "current_trade_date_volume": 39330
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 21,
+          "current_trade_date_volume": 33
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-09",
+      "predecessor_trade_date": "2022-09-08",
+      "segments": [
+        {
+          "start_utc": "2022-09-08T22:00:00+00:00",
+          "end_utc": "2022-09-09T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00013005625968980786,
+          "bpv_within_segment": 0.00012062417499738914,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00014604217970622867
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 716074,
+          "current_trade_date_volume": 482530
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 39330,
+          "current_trade_date_volume": 246119
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 33,
+          "current_trade_date_volume": 67
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-12",
+      "predecessor_trade_date": "2022-09-09",
+      "segments": [
+        {
+          "start_utc": "2022-09-11T22:00:00+00:00",
+          "end_utc": "2022-09-12T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000139387043826816,
+          "bpv_within_segment": 0.00013136789432656264,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001454355170449333
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQU22",
+      "historical_selected_contract": "NQU22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 482530,
+          "current_trade_date_volume": 313361
+        },
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 246119,
+          "current_trade_date_volume": 367205
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 67,
+          "current_trade_date_volume": 135
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-13",
+      "predecessor_trade_date": "2022-09-12",
+      "segments": [
+        {
+          "start_utc": "2022-09-12T22:00:00+00:00",
+          "end_utc": "2022-09-13T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0007831926215431993,
+          "bpv_within_segment": 0.0004038093728374339,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0008633494739076144
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 367205,
+          "current_trade_date_volume": 611774
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 313361,
+          "current_trade_date_volume": 346502
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 135,
+          "current_trade_date_volume": 445
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-14",
+      "predecessor_trade_date": "2022-09-13",
+      "segments": [
+        {
+          "start_utc": "2022-09-13T22:00:00+00:00",
+          "end_utc": "2022-09-14T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00031996731635832695,
+          "bpv_within_segment": 0.000308256572834802,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003535463649442707
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 611774,
+          "current_trade_date_volume": 639020
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 346502,
+          "current_trade_date_volume": 228111
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 445,
+          "current_trade_date_volume": 166
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-15",
+      "predecessor_trade_date": "2022-09-14",
+      "segments": [
+        {
+          "start_utc": "2022-09-14T22:00:00+00:00",
+          "end_utc": "2022-09-15T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00027111149185630806,
+          "bpv_within_segment": 0.00025894861853524565,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00026245836632772545
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 639020,
+          "current_trade_date_volume": 712732
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 228111,
+          "current_trade_date_volume": 132245
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 166,
+          "current_trade_date_volume": 194
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-16",
+      "predecessor_trade_date": "2022-09-15",
+      "segments": [
+        {
+          "start_utc": "2022-09-15T22:00:00+00:00",
+          "end_utc": "2022-09-16T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002705985979959988,
+          "bpv_within_segment": 0.0002703222364543184,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002611301818669899
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 712732,
+          "current_trade_date_volume": 740189
+        },
+        {
+          "contract": "NQU22",
+          "predecessor_volume": 132245,
+          "current_trade_date_volume": 6036
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 194,
+          "current_trade_date_volume": 350
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-19",
+      "predecessor_trade_date": "2022-09-16",
+      "segments": [
+        {
+          "start_utc": "2022-09-18T22:00:00+00:00",
+          "end_utc": "2022-09-19T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002322539412297801,
+          "bpv_within_segment": 0.00021639279843636041,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002201033731058937
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 740189,
+          "current_trade_date_volume": 625812
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 350,
+          "current_trade_date_volume": 389
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-20",
+      "predecessor_trade_date": "2022-09-19",
+      "segments": [
+        {
+          "start_utc": "2022-09-19T22:00:00+00:00",
+          "end_utc": "2022-09-20T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0001998536142179656,
+          "bpv_within_segment": 0.00019639308924469437,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00016191858904041995
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 625812,
+          "current_trade_date_volume": 698077
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 389,
+          "current_trade_date_volume": 274
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-21",
+      "predecessor_trade_date": "2022-09-20",
+      "segments": [
+        {
+          "start_utc": "2022-09-20T22:00:00+00:00",
+          "end_utc": "2022-09-21T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0007470170425451103,
+          "bpv_within_segment": 0.0006998907956984195,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.001032875837415698
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 698077,
+          "current_trade_date_volume": 813328
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 274,
+          "current_trade_date_volume": 338
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-22",
+      "predecessor_trade_date": "2022-09-21",
+      "segments": [
+        {
+          "start_utc": "2022-09-21T22:00:00+00:00",
+          "end_utc": "2022-09-22T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00037862248796255324,
+          "bpv_within_segment": 0.0003759739901940654,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0004006869685178134
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 813328,
+          "current_trade_date_volume": 780902
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 338,
+          "current_trade_date_volume": 534
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-23",
+      "predecessor_trade_date": "2022-09-22",
+      "segments": [
+        {
+          "start_utc": "2022-09-22T22:00:00+00:00",
+          "end_utc": "2022-09-23T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003274576861137377,
+          "bpv_within_segment": 0.0003349663014620656,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00031286912408324803
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 780902,
+          "current_trade_date_volume": 793653
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 534,
+          "current_trade_date_volume": 408
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-26",
+      "predecessor_trade_date": "2022-09-23",
+      "segments": [
+        {
+          "start_utc": "2022-09-25T22:00:00+00:00",
+          "end_utc": "2022-09-26T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00048349742672502597,
+          "bpv_within_segment": 0.0004788163674789364,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.000524362216252627
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 793653,
+          "current_trade_date_volume": 801455
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 408,
+          "current_trade_date_volume": 503
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 4
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-27",
+      "predecessor_trade_date": "2022-09-26",
+      "segments": [
+        {
+          "start_utc": "2022-09-26T22:00:00+00:00",
+          "end_utc": "2022-09-27T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003715264128314677,
+          "bpv_within_segment": 0.0003677461634458087,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0004254494109336118
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 801455,
+          "current_trade_date_volume": 833069
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 503,
+          "current_trade_date_volume": 532
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 4,
+          "current_trade_date_volume": 12
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-28",
+      "predecessor_trade_date": "2022-09-27",
+      "segments": [
+        {
+          "start_utc": "2022-09-27T22:00:00+00:00",
+          "end_utc": "2022-09-28T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0005851478081119045,
+          "bpv_within_segment": 0.0005841737980540828,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005258449972275834
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 833069,
+          "current_trade_date_volume": 884719
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 532,
+          "current_trade_date_volume": 803
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 12,
+          "current_trade_date_volume": 14
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-29",
+      "predecessor_trade_date": "2022-09-28",
+      "segments": [
+        {
+          "start_utc": "2022-09-28T22:00:00+00:00",
+          "end_utc": "2022-09-29T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00039587222919431963,
+          "bpv_within_segment": 0.00039881968375957654,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00043810551779907455
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 884719,
+          "current_trade_date_volume": 878846
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 803,
+          "current_trade_date_volume": 529
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 14,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-09-30",
+      "predecessor_trade_date": "2022-09-29",
+      "segments": [
+        {
+          "start_utc": "2022-09-29T22:00:00+00:00",
+          "end_utc": "2022-09-30T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0006154703143812792,
+          "bpv_within_segment": 0.0006299415810170049,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00044031063936949373
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 878846,
+          "current_trade_date_volume": 865575
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 529,
+          "current_trade_date_volume": 282
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-03",
+      "predecessor_trade_date": "2022-09-30",
+      "segments": [
+        {
+          "start_utc": "2022-10-02T22:00:00+00:00",
+          "end_utc": "2022-10-03T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00040179921454881214,
+          "bpv_within_segment": 0.00037856271822506003,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00038964387113196085
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 865575,
+          "current_trade_date_volume": 747335
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 282,
+          "current_trade_date_volume": 446
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-04",
+      "predecessor_trade_date": "2022-10-03",
+      "segments": [
+        {
+          "start_utc": "2022-10-03T22:00:00+00:00",
+          "end_utc": "2022-10-04T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00021857776376514967,
+          "bpv_within_segment": 0.0002151530419320445,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00020883597574996736
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 747335,
+          "current_trade_date_volume": 759873
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 446,
+          "current_trade_date_volume": 594
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-05",
+      "predecessor_trade_date": "2022-10-04",
+      "segments": [
+        {
+          "start_utc": "2022-10-04T22:00:00+00:00",
+          "end_utc": "2022-10-05T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00026252306173968007,
+          "bpv_within_segment": 0.00025994705952907043,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002835255546463022
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 759873,
+          "current_trade_date_volume": 693069
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 594,
+          "current_trade_date_volume": 416
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-06",
+      "predecessor_trade_date": "2022-10-05",
+      "segments": [
+        {
+          "start_utc": "2022-10-05T22:00:00+00:00",
+          "end_utc": "2022-10-06T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00038151667716576935,
+          "bpv_within_segment": 0.00036002075753753125,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00042087106740587723
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 693069,
+          "current_trade_date_volume": 769425
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 416,
+          "current_trade_date_volume": 629
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-07",
+      "predecessor_trade_date": "2022-10-06",
+      "segments": [
+        {
+          "start_utc": "2022-10-06T22:00:00+00:00",
+          "end_utc": "2022-10-07T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00041111688835736206,
+          "bpv_within_segment": 0.0003186682663441798,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003596593300973632
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 769425,
+          "current_trade_date_volume": 750469
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 629,
+          "current_trade_date_volume": 603
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-10",
+      "predecessor_trade_date": "2022-10-07",
+      "segments": [
+        {
+          "start_utc": "2022-10-09T22:00:00+00:00",
+          "end_utc": "2022-10-10T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003762682212835444,
+          "bpv_within_segment": 0.0003753744241809318,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003965016895943471
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 750469,
+          "current_trade_date_volume": 746649
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 603,
+          "current_trade_date_volume": 382
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 6
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-11",
+      "predecessor_trade_date": "2022-10-10",
+      "segments": [
+        {
+          "start_utc": "2022-10-10T22:00:00+00:00",
+          "end_utc": "2022-10-11T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00046219541708517156,
+          "bpv_within_segment": 0.00047001962379786803,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003719126379289323
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 746649,
+          "current_trade_date_volume": 822278
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 382,
+          "current_trade_date_volume": 447
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 6,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-12",
+      "predecessor_trade_date": "2022-10-11",
+      "segments": [
+        {
+          "start_utc": "2022-10-11T22:00:00+00:00",
+          "end_utc": "2022-10-12T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00047572895176198506,
+          "bpv_within_segment": 0.00043545231806830907,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.000433450558006733
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 822278,
+          "current_trade_date_volume": 722611
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 447,
+          "current_trade_date_volume": 431
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-13",
+      "predecessor_trade_date": "2022-10-12",
+      "segments": [
+        {
+          "start_utc": "2022-10-12T22:00:00+00:00",
+          "end_utc": "2022-10-13T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1379,
+          "missing_minutes_utc": [
+            "2022-10-12T22:48:00+00:00"
+          ],
+          "duplicate_bars": 0,
+          "rv_1m": null,
+          "bpv_within_segment": null,
+          "five_minute_complete_blocks": 0,
+          "rv_5m_segment_anchored": null
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 722611,
+          "current_trade_date_volume": 1033416
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 431,
+          "current_trade_date_volume": 958
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": false,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-14",
+      "predecessor_trade_date": "2022-10-13",
+      "segments": [
+        {
+          "start_utc": "2022-10-13T22:00:00+00:00",
+          "end_utc": "2022-10-14T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0006865822661788303,
+          "bpv_within_segment": 0.0006272978403768411,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.000675505931391108
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 1033416,
+          "current_trade_date_volume": 833656
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 958,
+          "current_trade_date_volume": 651
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 5,
+          "current_trade_date_volume": 3
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-17",
+      "predecessor_trade_date": "2022-10-14",
+      "segments": [
+        {
+          "start_utc": "2022-10-16T22:00:00+00:00",
+          "end_utc": "2022-10-17T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00027779905610578057,
+          "bpv_within_segment": 0.00025922317922025327,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003411749055103467
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 833656,
+          "current_trade_date_volume": 628453
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 651,
+          "current_trade_date_volume": 350
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 3,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-18",
+      "predecessor_trade_date": "2022-10-17",
+      "segments": [
+        {
+          "start_utc": "2022-10-17T22:00:00+00:00",
+          "end_utc": "2022-10-18T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0004644130875103822,
+          "bpv_within_segment": 0.00041412083471965594,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005111535078806483
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 628453,
+          "current_trade_date_volume": 826716
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 350,
+          "current_trade_date_volume": 551
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 9
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-19",
+      "predecessor_trade_date": "2022-10-18",
+      "segments": [
+        {
+          "start_utc": "2022-10-18T22:00:00+00:00",
+          "end_utc": "2022-10-19T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0004449878412771981,
+          "bpv_within_segment": 0.00041698405499540224,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00045420915604633223
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 826716,
+          "current_trade_date_volume": 730151
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 551,
+          "current_trade_date_volume": 352
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 9,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-20",
+      "predecessor_trade_date": "2022-10-19",
+      "segments": [
+        {
+          "start_utc": "2022-10-19T22:00:00+00:00",
+          "end_utc": "2022-10-20T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000481705213916011,
+          "bpv_within_segment": 0.0004681542234012634,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005346872034448199
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 730151,
+          "current_trade_date_volume": 732537
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 352,
+          "current_trade_date_volume": 415
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-21",
+      "predecessor_trade_date": "2022-10-20",
+      "segments": [
+        {
+          "start_utc": "2022-10-20T22:00:00+00:00",
+          "end_utc": "2022-10-21T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0005391807884390425,
+          "bpv_within_segment": 0.0005661179781454223,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0004393772108182202
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 732537,
+          "current_trade_date_volume": 828173
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 415,
+          "current_trade_date_volume": 372
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-24",
+      "predecessor_trade_date": "2022-10-21",
+      "segments": [
+        {
+          "start_utc": "2022-10-23T22:00:00+00:00",
+          "end_utc": "2022-10-24T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0005923962714238129,
+          "bpv_within_segment": 0.0005315293949149625,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.000543452584865065
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 828173,
+          "current_trade_date_volume": 706408
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 372,
+          "current_trade_date_volume": 483
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-25",
+      "predecessor_trade_date": "2022-10-24",
+      "segments": [
+        {
+          "start_utc": "2022-10-24T22:00:00+00:00",
+          "end_utc": "2022-10-25T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002507319736363277,
+          "bpv_within_segment": 0.00024912593025470134,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00037143360133237214
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 706408,
+          "current_trade_date_volume": 651141
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 483,
+          "current_trade_date_volume": 1236
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-26",
+      "predecessor_trade_date": "2022-10-25",
+      "segments": [
+        {
+          "start_utc": "2022-10-25T22:00:00+00:00",
+          "end_utc": "2022-10-26T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00037578481140358315,
+          "bpv_within_segment": 0.0003662222288175106,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00032659558359718317
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 651141,
+          "current_trade_date_volume": 769865
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1236,
+          "current_trade_date_volume": 854
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-27",
+      "predecessor_trade_date": "2022-10-26",
+      "segments": [
+        {
+          "start_utc": "2022-10-26T22:00:00+00:00",
+          "end_utc": "2022-10-27T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000719389198794392,
+          "bpv_within_segment": 0.0006493808195694763,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0006395732770140059
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 769865,
+          "current_trade_date_volume": 761967
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 854,
+          "current_trade_date_volume": 715
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-28",
+      "predecessor_trade_date": "2022-10-27",
+      "segments": [
+        {
+          "start_utc": "2022-10-27T22:00:00+00:00",
+          "end_utc": "2022-10-28T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003740847935231671,
+          "bpv_within_segment": 0.0003376401569532469,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003010844519828394
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 761967,
+          "current_trade_date_volume": 716853
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 715,
+          "current_trade_date_volume": 1085
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-10-31",
+      "predecessor_trade_date": "2022-10-28",
+      "segments": [
+        {
+          "start_utc": "2022-10-30T22:00:00+00:00",
+          "end_utc": "2022-10-31T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00025378272498207115,
+          "bpv_within_segment": 0.00023218495653466465,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002036057572439907
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 716853,
+          "current_trade_date_volume": 598263
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1085,
+          "current_trade_date_volume": 447
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-01",
+      "predecessor_trade_date": "2022-10-31",
+      "segments": [
+        {
+          "start_utc": "2022-10-31T22:00:00+00:00",
+          "end_utc": "2022-11-01T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00022176260880815905,
+          "bpv_within_segment": 0.00021365873067591512,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00021911112277958416
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 598263,
+          "current_trade_date_volume": 599463
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 447,
+          "current_trade_date_volume": 465
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-02",
+      "predecessor_trade_date": "2022-11-01",
+      "segments": [
+        {
+          "start_utc": "2022-11-01T22:00:00+00:00",
+          "end_utc": "2022-11-02T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0008526662172693961,
+          "bpv_within_segment": 0.0007383902841775729,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0006819670950681088
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 599463,
+          "current_trade_date_volume": 764800
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 465,
+          "current_trade_date_volume": 687
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-03",
+      "predecessor_trade_date": "2022-11-02",
+      "segments": [
+        {
+          "start_utc": "2022-11-02T22:00:00+00:00",
+          "end_utc": "2022-11-03T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00034676545196865084,
+          "bpv_within_segment": 0.00032822376708669694,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0003323062528805214
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 764800,
+          "current_trade_date_volume": 692887
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 687,
+          "current_trade_date_volume": 492
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 4
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-04",
+      "predecessor_trade_date": "2022-11-03",
+      "segments": [
+        {
+          "start_utc": "2022-11-03T22:00:00+00:00",
+          "end_utc": "2022-11-04T21:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0006841496757157296,
+          "bpv_within_segment": 0.0006555490752707883,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0007175327304603988
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 692887,
+          "current_trade_date_volume": 872460
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 492,
+          "current_trade_date_volume": 978
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 4,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-07",
+      "predecessor_trade_date": "2022-11-04",
+      "segments": [
+        {
+          "start_utc": "2022-11-06T23:00:00+00:00",
+          "end_utc": "2022-11-07T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00029363774118316505,
+          "bpv_within_segment": 0.00029408749555604363,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00024236828904527886
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 872460,
+          "current_trade_date_volume": 545651
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 978,
+          "current_trade_date_volume": 508
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-08",
+      "predecessor_trade_date": "2022-11-07",
+      "segments": [
+        {
+          "start_utc": "2022-11-07T23:00:00+00:00",
+          "end_utc": "2022-11-08T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00026746301632280136,
+          "bpv_within_segment": 0.00026577542346552355,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00028369476320116483
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 545651,
+          "current_trade_date_volume": 717993
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 508,
+          "current_trade_date_volume": 852
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-09",
+      "predecessor_trade_date": "2022-11-08",
+      "segments": [
+        {
+          "start_utc": "2022-11-08T23:00:00+00:00",
+          "end_utc": "2022-11-09T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0003195143364508675,
+          "bpv_within_segment": 0.0003202399206106682,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00030951230169447194
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 717993,
+          "current_trade_date_volume": 653941
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 852,
+          "current_trade_date_volume": 682
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 0,
+          "current_trade_date_volume": 4
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-10",
+      "predecessor_trade_date": "2022-11-09",
+      "segments": [
+        {
+          "start_utc": "2022-11-09T23:00:00+00:00",
+          "end_utc": "2022-11-10T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0010008396560027535,
+          "bpv_within_segment": 0.0004603863472612358,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.001123612876081371
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 653941,
+          "current_trade_date_volume": 838935
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 682,
+          "current_trade_date_volume": 1403
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 4,
+          "current_trade_date_volume": 4
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-11",
+      "predecessor_trade_date": "2022-11-10",
+      "segments": [
+        {
+          "start_utc": "2022-11-10T23:00:00+00:00",
+          "end_utc": "2022-11-11T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00031060926534602054,
+          "bpv_within_segment": 0.00030334156482909636,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0002710324306012478
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 838935,
+          "current_trade_date_volume": 674991
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1403,
+          "current_trade_date_volume": 1140
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 4,
+          "current_trade_date_volume": 7
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-14",
+      "predecessor_trade_date": "2022-11-11",
+      "segments": [
+        {
+          "start_utc": "2022-11-13T23:00:00+00:00",
+          "end_utc": "2022-11-14T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0002223853510559252,
+          "bpv_within_segment": 0.00021779898559846277,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00019005616076819205
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 674991,
+          "current_trade_date_volume": 567983
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1140,
+          "current_trade_date_volume": 701
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 7,
+          "current_trade_date_volume": 6
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-15",
+      "predecessor_trade_date": "2022-11-14",
+      "segments": [
+        {
+          "start_utc": "2022-11-14T23:00:00+00:00",
+          "end_utc": "2022-11-15T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00047787195264478634,
+          "bpv_within_segment": 0.00043913958530292853,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0005849225273992671
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 567983,
+          "current_trade_date_volume": 765481
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 701,
+          "current_trade_date_volume": 1749
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 6,
+          "current_trade_date_volume": 8
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-16",
+      "predecessor_trade_date": "2022-11-15",
+      "segments": [
+        {
+          "start_utc": "2022-11-15T23:00:00+00:00",
+          "end_utc": "2022-11-16T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.000237850247670225,
+          "bpv_within_segment": 0.00021368665736283416,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00020614896137308283
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 765481,
+          "current_trade_date_volume": 568951
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 1749,
+          "current_trade_date_volume": 616
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 8,
+          "current_trade_date_volume": 8
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-17",
+      "predecessor_trade_date": "2022-11-16",
+      "segments": [
+        {
+          "start_utc": "2022-11-16T23:00:00+00:00",
+          "end_utc": "2022-11-17T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00023212245567955819,
+          "bpv_within_segment": 0.0002150620563054681,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00023100288570861318
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 568951,
+          "current_trade_date_volume": 645645
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 616,
+          "current_trade_date_volume": 639
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 8,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-18",
+      "predecessor_trade_date": "2022-11-17",
+      "segments": [
+        {
+          "start_utc": "2022-11-17T23:00:00+00:00",
+          "end_utc": "2022-11-18T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00022249157446769133,
+          "bpv_within_segment": 0.0002198116063667733,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00024939577695792207
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 645645,
+          "current_trade_date_volume": 578497
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 639,
+          "current_trade_date_volume": 603
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-21",
+      "predecessor_trade_date": "2022-11-18",
+      "segments": [
+        {
+          "start_utc": "2022-11-20T23:00:00+00:00",
+          "end_utc": "2022-11-21T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.0001462857122502817,
+          "bpv_within_segment": 0.00014131305482541456,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00011807473574228615
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 578497,
+          "current_trade_date_volume": 474645
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 603,
+          "current_trade_date_volume": 546
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "B",
+      "historical_reason": "B_REGULAR_REGIME_FULL_ACTIVE_GRID",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    }
+  ],
+  "extension_preview": [
+    {
+      "trade_date": "2022-11-22",
+      "predecessor_trade_date": "2022-11-21",
+      "segments": [
+        {
+          "start_utc": "2022-11-21T23:00:00+00:00",
+          "end_utc": "2022-11-22T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00011544461148807366,
+          "bpv_within_segment": 0.0001086406676352835,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.0001218355234485084
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 474645,
+          "current_trade_date_volume": 524885
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 546,
+          "current_trade_date_volume": 385
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 1
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-23",
+      "predecessor_trade_date": "2022-11-22",
+      "segments": [
+        {
+          "start_utc": "2022-11-22T23:00:00+00:00",
+          "end_utc": "2022-11-23T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1380,
+          "missing_minutes_utc": [],
+          "duplicate_bars": 0,
+          "rv_1m": 0.00016057513374958355,
+          "bpv_within_segment": 0.00015811798791282903,
+          "five_minute_complete_blocks": 276,
+          "rv_5m_segment_anchored": 0.00015180698743641504
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 524885,
+          "current_trade_date_volume": 466500
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 385,
+          "current_trade_date_volume": 457
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 1,
+          "current_trade_date_volume": 5
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": true,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-24",
+      "predecessor_trade_date": "2022-11-23",
+      "segments": [
+        {
+          "start_utc": "2022-11-23T23:00:00+00:00",
+          "end_utc": "2022-11-24T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1138,
+          "missing_minutes_utc": [
+            "2022-11-24T04:59:00+00:00",
+            "2022-11-24T05:28:00+00:00",
+            "2022-11-24T18:00:00+00:00",
+            "2022-11-24T18:01:00+00:00",
+            "2022-11-24T18:02:00+00:00",
+            "2022-11-24T18:03:00+00:00",
+            "2022-11-24T18:04:00+00:00",
+            "2022-11-24T18:05:00+00:00",
+            "2022-11-24T18:06:00+00:00",
+            "2022-11-24T18:07:00+00:00",
+            "2022-11-24T18:08:00+00:00",
+            "2022-11-24T18:09:00+00:00",
+            "2022-11-24T18:10:00+00:00",
+            "2022-11-24T18:11:00+00:00",
+            "2022-11-24T18:12:00+00:00",
+            "2022-11-24T18:13:00+00:00",
+            "2022-11-24T18:14:00+00:00",
+            "2022-11-24T18:15:00+00:00",
+            "2022-11-24T18:16:00+00:00",
+            "2022-11-24T18:17:00+00:00",
+            "2022-11-24T18:18:00+00:00",
+            "2022-11-24T18:19:00+00:00",
+            "2022-11-24T18:20:00+00:00",
+            "2022-11-24T18:21:00+00:00",
+            "2022-11-24T18:22:00+00:00",
+            "2022-11-24T18:23:00+00:00",
+            "2022-11-24T18:24:00+00:00",
+            "2022-11-24T18:25:00+00:00",
+            "2022-11-24T18:26:00+00:00",
+            "2022-11-24T18:27:00+00:00",
+            "2022-11-24T18:28:00+00:00",
+            "2022-11-24T18:29:00+00:00",
+            "2022-11-24T18:30:00+00:00",
+            "2022-11-24T18:31:00+00:00",
+            "2022-11-24T18:32:00+00:00",
+            "2022-11-24T18:33:00+00:00",
+            "2022-11-24T18:34:00+00:00",
+            "2022-11-24T18:35:00+00:00",
+            "2022-11-24T18:36:00+00:00",
+            "2022-11-24T18:37:00+00:00",
+            "2022-11-24T18:38:00+00:00",
+            "2022-11-24T18:39:00+00:00",
+            "2022-11-24T18:40:00+00:00",
+            "2022-11-24T18:41:00+00:00",
+            "2022-11-24T18:42:00+00:00",
+            "2022-11-24T18:43:00+00:00",
+            "2022-11-24T18:44:00+00:00",
+            "2022-11-24T18:45:00+00:00",
+            "2022-11-24T18:46:00+00:00",
+            "2022-11-24T18:47:00+00:00",
+            "2022-11-24T18:48:00+00:00",
+            "2022-11-24T18:49:00+00:00",
+            "2022-11-24T18:50:00+00:00",
+            "2022-11-24T18:51:00+00:00",
+            "2022-11-24T18:52:00+00:00",
+            "2022-11-24T18:53:00+00:00",
+            "2022-11-24T18:54:00+00:00",
+            "2022-11-24T18:55:00+00:00",
+            "2022-11-24T18:56:00+00:00",
+            "2022-11-24T18:57:00+00:00",
+            "2022-11-24T18:58:00+00:00",
+            "2022-11-24T18:59:00+00:00",
+            "2022-11-24T19:00:00+00:00",
+            "2022-11-24T19:01:00+00:00",
+            "2022-11-24T19:02:00+00:00",
+            "2022-11-24T19:03:00+00:00",
+            "2022-11-24T19:04:00+00:00",
+            "2022-11-24T19:05:00+00:00",
+            "2022-11-24T19:06:00+00:00",
+            "2022-11-24T19:07:00+00:00",
+            "2022-11-24T19:08:00+00:00",
+            "2022-11-24T19:09:00+00:00",
+            "2022-11-24T19:10:00+00:00",
+            "2022-11-24T19:11:00+00:00",
+            "2022-11-24T19:12:00+00:00",
+            "2022-11-24T19:13:00+00:00",
+            "2022-11-24T19:14:00+00:00",
+            "2022-11-24T19:15:00+00:00",
+            "2022-11-24T19:16:00+00:00",
+            "2022-11-24T19:17:00+00:00",
+            "2022-11-24T19:18:00+00:00",
+            "2022-11-24T19:19:00+00:00",
+            "2022-11-24T19:20:00+00:00",
+            "2022-11-24T19:21:00+00:00",
+            "2022-11-24T19:22:00+00:00",
+            "2022-11-24T19:23:00+00:00",
+            "2022-11-24T19:24:00+00:00",
+            "2022-11-24T19:25:00+00:00",
+            "2022-11-24T19:26:00+00:00",
+            "2022-11-24T19:27:00+00:00",
+            "2022-11-24T19:28:00+00:00",
+            "2022-11-24T19:29:00+00:00",
+            "2022-11-24T19:30:00+00:00",
+            "2022-11-24T19:31:00+00:00",
+            "2022-11-24T19:32:00+00:00",
+            "2022-11-24T19:33:00+00:00",
+            "2022-11-24T19:34:00+00:00",
+            "2022-11-24T19:35:00+00:00",
+            "2022-11-24T19:36:00+00:00",
+            "2022-11-24T19:37:00+00:00",
+            "2022-11-24T19:38:00+00:00",
+            "2022-11-24T19:39:00+00:00",
+            "2022-11-24T19:40:00+00:00",
+            "2022-11-24T19:41:00+00:00",
+            "2022-11-24T19:42:00+00:00",
+            "2022-11-24T19:43:00+00:00",
+            "2022-11-24T19:44:00+00:00",
+            "2022-11-24T19:45:00+00:00",
+            "2022-11-24T19:46:00+00:00",
+            "2022-11-24T19:47:00+00:00",
+            "2022-11-24T19:48:00+00:00",
+            "2022-11-24T19:49:00+00:00",
+            "2022-11-24T19:50:00+00:00",
+            "2022-11-24T19:51:00+00:00",
+            "2022-11-24T19:52:00+00:00",
+            "2022-11-24T19:53:00+00:00",
+            "2022-11-24T19:54:00+00:00",
+            "2022-11-24T19:55:00+00:00",
+            "2022-11-24T19:56:00+00:00",
+            "2022-11-24T19:57:00+00:00",
+            "2022-11-24T19:58:00+00:00",
+            "2022-11-24T19:59:00+00:00",
+            "2022-11-24T20:00:00+00:00",
+            "2022-11-24T20:01:00+00:00",
+            "2022-11-24T20:02:00+00:00",
+            "2022-11-24T20:03:00+00:00",
+            "2022-11-24T20:04:00+00:00",
+            "2022-11-24T20:05:00+00:00",
+            "2022-11-24T20:06:00+00:00",
+            "2022-11-24T20:07:00+00:00",
+            "2022-11-24T20:08:00+00:00",
+            "2022-11-24T20:09:00+00:00",
+            "2022-11-24T20:10:00+00:00",
+            "2022-11-24T20:11:00+00:00",
+            "2022-11-24T20:12:00+00:00",
+            "2022-11-24T20:13:00+00:00",
+            "2022-11-24T20:14:00+00:00",
+            "2022-11-24T20:15:00+00:00",
+            "2022-11-24T20:16:00+00:00",
+            "2022-11-24T20:17:00+00:00",
+            "2022-11-24T20:18:00+00:00",
+            "2022-11-24T20:19:00+00:00",
+            "2022-11-24T20:20:00+00:00",
+            "2022-11-24T20:21:00+00:00",
+            "2022-11-24T20:22:00+00:00",
+            "2022-11-24T20:23:00+00:00",
+            "2022-11-24T20:24:00+00:00",
+            "2022-11-24T20:25:00+00:00",
+            "2022-11-24T20:26:00+00:00",
+            "2022-11-24T20:27:00+00:00",
+            "2022-11-24T20:28:00+00:00",
+            "2022-11-24T20:29:00+00:00",
+            "2022-11-24T20:30:00+00:00",
+            "2022-11-24T20:31:00+00:00",
+            "2022-11-24T20:32:00+00:00",
+            "2022-11-24T20:33:00+00:00",
+            "2022-11-24T20:34:00+00:00",
+            "2022-11-24T20:35:00+00:00",
+            "2022-11-24T20:36:00+00:00",
+            "2022-11-24T20:37:00+00:00",
+            "2022-11-24T20:38:00+00:00",
+            "2022-11-24T20:39:00+00:00",
+            "2022-11-24T20:40:00+00:00",
+            "2022-11-24T20:41:00+00:00",
+            "2022-11-24T20:42:00+00:00",
+            "2022-11-24T20:43:00+00:00",
+            "2022-11-24T20:44:00+00:00",
+            "2022-11-24T20:45:00+00:00",
+            "2022-11-24T20:46:00+00:00",
+            "2022-11-24T20:47:00+00:00",
+            "2022-11-24T20:48:00+00:00",
+            "2022-11-24T20:49:00+00:00",
+            "2022-11-24T20:50:00+00:00",
+            "2022-11-24T20:51:00+00:00",
+            "2022-11-24T20:52:00+00:00",
+            "2022-11-24T20:53:00+00:00",
+            "2022-11-24T20:54:00+00:00",
+            "2022-11-24T20:55:00+00:00",
+            "2022-11-24T20:56:00+00:00",
+            "2022-11-24T20:57:00+00:00",
+            "2022-11-24T20:58:00+00:00",
+            "2022-11-24T20:59:00+00:00",
+            "2022-11-24T21:00:00+00:00",
+            "2022-11-24T21:01:00+00:00",
+            "2022-11-24T21:02:00+00:00",
+            "2022-11-24T21:03:00+00:00",
+            "2022-11-24T21:04:00+00:00",
+            "2022-11-24T21:05:00+00:00",
+            "2022-11-24T21:06:00+00:00",
+            "2022-11-24T21:07:00+00:00",
+            "2022-11-24T21:08:00+00:00",
+            "2022-11-24T21:09:00+00:00",
+            "2022-11-24T21:10:00+00:00",
+            "2022-11-24T21:11:00+00:00",
+            "2022-11-24T21:12:00+00:00",
+            "2022-11-24T21:13:00+00:00",
+            "2022-11-24T21:14:00+00:00",
+            "2022-11-24T21:15:00+00:00",
+            "2022-11-24T21:16:00+00:00",
+            "2022-11-24T21:17:00+00:00",
+            "2022-11-24T21:18:00+00:00",
+            "2022-11-24T21:19:00+00:00",
+            "2022-11-24T21:20:00+00:00",
+            "2022-11-24T21:21:00+00:00",
+            "2022-11-24T21:22:00+00:00",
+            "2022-11-24T21:23:00+00:00",
+            "2022-11-24T21:24:00+00:00",
+            "2022-11-24T21:25:00+00:00",
+            "2022-11-24T21:26:00+00:00",
+            "2022-11-24T21:27:00+00:00",
+            "2022-11-24T21:28:00+00:00",
+            "2022-11-24T21:29:00+00:00",
+            "2022-11-24T21:30:00+00:00",
+            "2022-11-24T21:31:00+00:00",
+            "2022-11-24T21:32:00+00:00",
+            "2022-11-24T21:33:00+00:00",
+            "2022-11-24T21:34:00+00:00",
+            "2022-11-24T21:35:00+00:00",
+            "2022-11-24T21:36:00+00:00",
+            "2022-11-24T21:37:00+00:00",
+            "2022-11-24T21:38:00+00:00",
+            "2022-11-24T21:39:00+00:00",
+            "2022-11-24T21:40:00+00:00",
+            "2022-11-24T21:41:00+00:00",
+            "2022-11-24T21:42:00+00:00",
+            "2022-11-24T21:43:00+00:00",
+            "2022-11-24T21:44:00+00:00",
+            "2022-11-24T21:45:00+00:00",
+            "2022-11-24T21:46:00+00:00",
+            "2022-11-24T21:47:00+00:00",
+            "2022-11-24T21:48:00+00:00",
+            "2022-11-24T21:49:00+00:00",
+            "2022-11-24T21:50:00+00:00",
+            "2022-11-24T21:51:00+00:00",
+            "2022-11-24T21:52:00+00:00",
+            "2022-11-24T21:53:00+00:00",
+            "2022-11-24T21:54:00+00:00",
+            "2022-11-24T21:55:00+00:00",
+            "2022-11-24T21:56:00+00:00",
+            "2022-11-24T21:57:00+00:00",
+            "2022-11-24T21:58:00+00:00",
+            "2022-11-24T21:59:00+00:00"
+          ],
+          "duplicate_bars": 0,
+          "rv_1m": null,
+          "bpv_within_segment": null,
+          "five_minute_complete_blocks": 0,
+          "rv_5m_segment_anchored": null
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 466500,
+          "current_trade_date_volume": 57132
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 457,
+          "current_trade_date_volume": 160
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 5,
+          "current_trade_date_volume": 2
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": false,
+      "off_grid_selected_bars": 0
+    },
+    {
+      "trade_date": "2022-11-25",
+      "predecessor_trade_date": "2022-11-24",
+      "segments": [
+        {
+          "start_utc": "2022-11-24T23:00:00+00:00",
+          "end_utc": "2022-11-25T22:00:00+00:00",
+          "expected_minutes": 1380,
+          "observed_bars": 1153,
+          "missing_minutes_utc": [
+            "2022-11-25T02:57:00+00:00",
+            "2022-11-25T04:45:00+00:00",
+            "2022-11-25T18:15:00+00:00",
+            "2022-11-25T18:16:00+00:00",
+            "2022-11-25T18:17:00+00:00",
+            "2022-11-25T18:18:00+00:00",
+            "2022-11-25T18:19:00+00:00",
+            "2022-11-25T18:20:00+00:00",
+            "2022-11-25T18:21:00+00:00",
+            "2022-11-25T18:22:00+00:00",
+            "2022-11-25T18:23:00+00:00",
+            "2022-11-25T18:24:00+00:00",
+            "2022-11-25T18:25:00+00:00",
+            "2022-11-25T18:26:00+00:00",
+            "2022-11-25T18:27:00+00:00",
+            "2022-11-25T18:28:00+00:00",
+            "2022-11-25T18:29:00+00:00",
+            "2022-11-25T18:30:00+00:00",
+            "2022-11-25T18:31:00+00:00",
+            "2022-11-25T18:32:00+00:00",
+            "2022-11-25T18:33:00+00:00",
+            "2022-11-25T18:34:00+00:00",
+            "2022-11-25T18:35:00+00:00",
+            "2022-11-25T18:36:00+00:00",
+            "2022-11-25T18:37:00+00:00",
+            "2022-11-25T18:38:00+00:00",
+            "2022-11-25T18:39:00+00:00",
+            "2022-11-25T18:40:00+00:00",
+            "2022-11-25T18:41:00+00:00",
+            "2022-11-25T18:42:00+00:00",
+            "2022-11-25T18:43:00+00:00",
+            "2022-11-25T18:44:00+00:00",
+            "2022-11-25T18:45:00+00:00",
+            "2022-11-25T18:46:00+00:00",
+            "2022-11-25T18:47:00+00:00",
+            "2022-11-25T18:48:00+00:00",
+            "2022-11-25T18:49:00+00:00",
+            "2022-11-25T18:50:00+00:00",
+            "2022-11-25T18:51:00+00:00",
+            "2022-11-25T18:52:00+00:00",
+            "2022-11-25T18:53:00+00:00",
+            "2022-11-25T18:54:00+00:00",
+            "2022-11-25T18:55:00+00:00",
+            "2022-11-25T18:56:00+00:00",
+            "2022-11-25T18:57:00+00:00",
+            "2022-11-25T18:58:00+00:00",
+            "2022-11-25T18:59:00+00:00",
+            "2022-11-25T19:00:00+00:00",
+            "2022-11-25T19:01:00+00:00",
+            "2022-11-25T19:02:00+00:00",
+            "2022-11-25T19:03:00+00:00",
+            "2022-11-25T19:04:00+00:00",
+            "2022-11-25T19:05:00+00:00",
+            "2022-11-25T19:06:00+00:00",
+            "2022-11-25T19:07:00+00:00",
+            "2022-11-25T19:08:00+00:00",
+            "2022-11-25T19:09:00+00:00",
+            "2022-11-25T19:10:00+00:00",
+            "2022-11-25T19:11:00+00:00",
+            "2022-11-25T19:12:00+00:00",
+            "2022-11-25T19:13:00+00:00",
+            "2022-11-25T19:14:00+00:00",
+            "2022-11-25T19:15:00+00:00",
+            "2022-11-25T19:16:00+00:00",
+            "2022-11-25T19:17:00+00:00",
+            "2022-11-25T19:18:00+00:00",
+            "2022-11-25T19:19:00+00:00",
+            "2022-11-25T19:20:00+00:00",
+            "2022-11-25T19:21:00+00:00",
+            "2022-11-25T19:22:00+00:00",
+            "2022-11-25T19:23:00+00:00",
+            "2022-11-25T19:24:00+00:00",
+            "2022-11-25T19:25:00+00:00",
+            "2022-11-25T19:26:00+00:00",
+            "2022-11-25T19:27:00+00:00",
+            "2022-11-25T19:28:00+00:00",
+            "2022-11-25T19:29:00+00:00",
+            "2022-11-25T19:30:00+00:00",
+            "2022-11-25T19:31:00+00:00",
+            "2022-11-25T19:32:00+00:00",
+            "2022-11-25T19:33:00+00:00",
+            "2022-11-25T19:34:00+00:00",
+            "2022-11-25T19:35:00+00:00",
+            "2022-11-25T19:36:00+00:00",
+            "2022-11-25T19:37:00+00:00",
+            "2022-11-25T19:38:00+00:00",
+            "2022-11-25T19:39:00+00:00",
+            "2022-11-25T19:40:00+00:00",
+            "2022-11-25T19:41:00+00:00",
+            "2022-11-25T19:42:00+00:00",
+            "2022-11-25T19:43:00+00:00",
+            "2022-11-25T19:44:00+00:00",
+            "2022-11-25T19:45:00+00:00",
+            "2022-11-25T19:46:00+00:00",
+            "2022-11-25T19:47:00+00:00",
+            "2022-11-25T19:48:00+00:00",
+            "2022-11-25T19:49:00+00:00",
+            "2022-11-25T19:50:00+00:00",
+            "2022-11-25T19:51:00+00:00",
+            "2022-11-25T19:52:00+00:00",
+            "2022-11-25T19:53:00+00:00",
+            "2022-11-25T19:54:00+00:00",
+            "2022-11-25T19:55:00+00:00",
+            "2022-11-25T19:56:00+00:00",
+            "2022-11-25T19:57:00+00:00",
+            "2022-11-25T19:58:00+00:00",
+            "2022-11-25T19:59:00+00:00",
+            "2022-11-25T20:00:00+00:00",
+            "2022-11-25T20:01:00+00:00",
+            "2022-11-25T20:02:00+00:00",
+            "2022-11-25T20:03:00+00:00",
+            "2022-11-25T20:04:00+00:00",
+            "2022-11-25T20:05:00+00:00",
+            "2022-11-25T20:06:00+00:00",
+            "2022-11-25T20:07:00+00:00",
+            "2022-11-25T20:08:00+00:00",
+            "2022-11-25T20:09:00+00:00",
+            "2022-11-25T20:10:00+00:00",
+            "2022-11-25T20:11:00+00:00",
+            "2022-11-25T20:12:00+00:00",
+            "2022-11-25T20:13:00+00:00",
+            "2022-11-25T20:14:00+00:00",
+            "2022-11-25T20:15:00+00:00",
+            "2022-11-25T20:16:00+00:00",
+            "2022-11-25T20:17:00+00:00",
+            "2022-11-25T20:18:00+00:00",
+            "2022-11-25T20:19:00+00:00",
+            "2022-11-25T20:20:00+00:00",
+            "2022-11-25T20:21:00+00:00",
+            "2022-11-25T20:22:00+00:00",
+            "2022-11-25T20:23:00+00:00",
+            "2022-11-25T20:24:00+00:00",
+            "2022-11-25T20:25:00+00:00",
+            "2022-11-25T20:26:00+00:00",
+            "2022-11-25T20:27:00+00:00",
+            "2022-11-25T20:28:00+00:00",
+            "2022-11-25T20:29:00+00:00",
+            "2022-11-25T20:30:00+00:00",
+            "2022-11-25T20:31:00+00:00",
+            "2022-11-25T20:32:00+00:00",
+            "2022-11-25T20:33:00+00:00",
+            "2022-11-25T20:34:00+00:00",
+            "2022-11-25T20:35:00+00:00",
+            "2022-11-25T20:36:00+00:00",
+            "2022-11-25T20:37:00+00:00",
+            "2022-11-25T20:38:00+00:00",
+            "2022-11-25T20:39:00+00:00",
+            "2022-11-25T20:40:00+00:00",
+            "2022-11-25T20:41:00+00:00",
+            "2022-11-25T20:42:00+00:00",
+            "2022-11-25T20:43:00+00:00",
+            "2022-11-25T20:44:00+00:00",
+            "2022-11-25T20:45:00+00:00",
+            "2022-11-25T20:46:00+00:00",
+            "2022-11-25T20:47:00+00:00",
+            "2022-11-25T20:48:00+00:00",
+            "2022-11-25T20:49:00+00:00",
+            "2022-11-25T20:50:00+00:00",
+            "2022-11-25T20:51:00+00:00",
+            "2022-11-25T20:52:00+00:00",
+            "2022-11-25T20:53:00+00:00",
+            "2022-11-25T20:54:00+00:00",
+            "2022-11-25T20:55:00+00:00",
+            "2022-11-25T20:56:00+00:00",
+            "2022-11-25T20:57:00+00:00",
+            "2022-11-25T20:58:00+00:00",
+            "2022-11-25T20:59:00+00:00",
+            "2022-11-25T21:00:00+00:00",
+            "2022-11-25T21:01:00+00:00",
+            "2022-11-25T21:02:00+00:00",
+            "2022-11-25T21:03:00+00:00",
+            "2022-11-25T21:04:00+00:00",
+            "2022-11-25T21:05:00+00:00",
+            "2022-11-25T21:06:00+00:00",
+            "2022-11-25T21:07:00+00:00",
+            "2022-11-25T21:08:00+00:00",
+            "2022-11-25T21:09:00+00:00",
+            "2022-11-25T21:10:00+00:00",
+            "2022-11-25T21:11:00+00:00",
+            "2022-11-25T21:12:00+00:00",
+            "2022-11-25T21:13:00+00:00",
+            "2022-11-25T21:14:00+00:00",
+            "2022-11-25T21:15:00+00:00",
+            "2022-11-25T21:16:00+00:00",
+            "2022-11-25T21:17:00+00:00",
+            "2022-11-25T21:18:00+00:00",
+            "2022-11-25T21:19:00+00:00",
+            "2022-11-25T21:20:00+00:00",
+            "2022-11-25T21:21:00+00:00",
+            "2022-11-25T21:22:00+00:00",
+            "2022-11-25T21:23:00+00:00",
+            "2022-11-25T21:24:00+00:00",
+            "2022-11-25T21:25:00+00:00",
+            "2022-11-25T21:26:00+00:00",
+            "2022-11-25T21:27:00+00:00",
+            "2022-11-25T21:28:00+00:00",
+            "2022-11-25T21:29:00+00:00",
+            "2022-11-25T21:30:00+00:00",
+            "2022-11-25T21:31:00+00:00",
+            "2022-11-25T21:32:00+00:00",
+            "2022-11-25T21:33:00+00:00",
+            "2022-11-25T21:34:00+00:00",
+            "2022-11-25T21:35:00+00:00",
+            "2022-11-25T21:36:00+00:00",
+            "2022-11-25T21:37:00+00:00",
+            "2022-11-25T21:38:00+00:00",
+            "2022-11-25T21:39:00+00:00",
+            "2022-11-25T21:40:00+00:00",
+            "2022-11-25T21:41:00+00:00",
+            "2022-11-25T21:42:00+00:00",
+            "2022-11-25T21:43:00+00:00",
+            "2022-11-25T21:44:00+00:00",
+            "2022-11-25T21:45:00+00:00",
+            "2022-11-25T21:46:00+00:00",
+            "2022-11-25T21:47:00+00:00",
+            "2022-11-25T21:48:00+00:00",
+            "2022-11-25T21:49:00+00:00",
+            "2022-11-25T21:50:00+00:00",
+            "2022-11-25T21:51:00+00:00",
+            "2022-11-25T21:52:00+00:00",
+            "2022-11-25T21:53:00+00:00",
+            "2022-11-25T21:54:00+00:00",
+            "2022-11-25T21:55:00+00:00",
+            "2022-11-25T21:56:00+00:00",
+            "2022-11-25T21:57:00+00:00",
+            "2022-11-25T21:58:00+00:00",
+            "2022-11-25T21:59:00+00:00"
+          ],
+          "duplicate_bars": 0,
+          "rv_1m": null,
+          "bpv_within_segment": null,
+          "five_minute_complete_blocks": 0,
+          "rv_5m_segment_anchored": null
+        }
+      ],
+      "expected_minutes": 1380,
+      "selected_contract": "NQZ22",
+      "historical_selected_contract": "NQZ22",
+      "winner_changed": false,
+      "candidate_volume_rank": [
+        {
+          "contract": "NQZ22",
+          "predecessor_volume": 57132,
+          "current_trade_date_volume": 191273
+        },
+        {
+          "contract": "NQH23",
+          "predecessor_volume": 160,
+          "current_trade_date_volume": 262
+        },
+        {
+          "contract": "NQM23",
+          "predecessor_volume": 2,
+          "current_trade_date_volume": 8
+        }
+      ],
+      "historical_tier": "C",
+      "historical_reason": "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED",
+      "coverage_complete_against_candidate_grid": false,
+      "off_grid_selected_bars": 0
+    }
+  ]
+}

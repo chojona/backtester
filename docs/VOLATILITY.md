@@ -36,6 +36,17 @@ For n log returns r_i over a unit-normalized measurement window:
 The BPV definition is the uncorrected adjacent version, without n/(n-1)
 finite-sample adjustment or staggering. Pairs never cross a gap, halt, session,
 contract, or calendar segment. Consequently a full-session BPV sums segment BPVs.
+This convention is estimator `bpv-segment-v1.0.0`: returns are log(close/reference),
+with the first observed bar using its open and later bars using the preceding close
+only when adjacent on the same contract and trading date. A boundary bar's return
+belongs to its destination segment. BPV uses `(pi/2) * sum(abs(r[i-1] * r[i]))`
+for adjacent one-minute returns in the same Overnight, RTH, or Post-RTH segment;
+there is no `n/(n-1)` correction. A gap, unknown bar, contract change, or calendar
+segment boundary removes that pair. Fewer than one eligible pair yields null.
+The retained `results/databento-nq-full-history/volatility-by-session.csv` uses
+legacy `bpv-all-adjacent-v0.0.0`, which includes the two segment-boundary pairs.
+`scripts/version_nq_bpv.py` writes a separately versioned derived table and
+manifest from the unchanged consolidated history.
 See [Barndorff-Nielsen and Shephard (2004)](https://shephard.scholars.harvard.edu/publications/power-and-bipower-variation-stochastic-volatility-and-jumps).
 Its asymptotic robustness is conditional on model assumptions, not assured at 1m.
 RV = RS+ + RS- up to rounding; BPV may exceed RV in finite samples.
