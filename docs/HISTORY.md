@@ -21,11 +21,12 @@ definition requests round outward to whole UTC days. Requests have stable hashes
 The seven-day overlap supplies a prior-session buffer; it does not implement
 cross-chunk causal state or verify deduplication by itself.
 
-The retained ten-session trial is the currently documented accepted dataset.
-Full-history raw downloads, if present locally, remain pending reviewed calendars,
-normalization, overlap checks and acceptance. A provider availability endpoint
-or an elapsed session close does not prove complete usable market data. The
-preparation scripts do not implement forecasting or trading.
+The retained ten-session trial has a dated acceptance report. The later Phase 3
+audit normalized and verified retained full-history data, while certifying only
+11 sessions as Tier A. The other dates remain provisional or excluded pending
+the evidence described below. A provider availability endpoint or an elapsed
+session close does not prove complete usable market data. The preparation
+scripts do not implement forecasting or trading.
 
 The retained acquisition now has a conservative full-date audit:
 
@@ -49,6 +50,23 @@ Run `python -m scripts.certify_nq_history_phase3` to build the versioned
 `calendars/sources/nq-history-v3-evidence.json` contain the rule and source
 provenance. The generated report, yearly coverage, decision register and
 allowlists give the exact results for the retained dataset.
+
+An independent retained-data verification can be rerun with:
+
+```sh
+python -m scripts.verify_nq_history_4207
+```
+
+Its ignored `results/databento-nq-full-history/phase3-v3.0.0/independent-verification.json`
+records the result. The October 14, 2026 pass checked all 67 retained raw-chunk
+file hashes, 7,301,216 raw bars, 516,400 exact overlap duplicates (zero
+conflicts), 6,784,816 consolidated UTC minute bars, all 4,207 observed-date
+decisions, 66 causal roll boundaries, dated regime/DST grids and provider
+conditions for eligible dates. The strict dataset contains only the 11 Tier A
+sessions (15,180 bars). The other 4,196 observed dates are explicitly outside
+strict research: 1,336 provisional Tier B, 2,858 unresolved Tier C and two
+invalid Tier D. Fifty-six unobserved weekday candidates are separately listed;
+they are not called missing CME sessions without a dated exchange schedule.
 
 Tier A is the strict certified set. Tier B is a provisional exploratory set:
 it requires a CME-sourced regular-hour regime, clean provider metadata, a

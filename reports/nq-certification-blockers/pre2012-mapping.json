@@ -1,0 +1,72 @@
+{
+  "source": "results/databento-nq-full-history/nq_outright_ohlcv_1m.parquet",
+  "source_rule": "CME equity index trading-hours change effective trade date 2012-11-19",
+  "counts": {
+    "pre2012_rows": 873296,
+    "trade_date_mismatch": 24601,
+    "outside_ordinary_hours_requires_review": 12
+  },
+  "examples": [
+    {
+      "timestamp_utc": "2010-06-07T20:30:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:31:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:32:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:32:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:33:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:33:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:34:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:35:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:36:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:37:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:40:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    },
+    {
+      "timestamp_utc": "2010-06-07T20:41:00+00:00",
+      "stored_date": "2010-06-07",
+      "ordinary_cme_date": "2010-06-08"
+    }
+  ],
+  "disposition": "Original parquet unchanged; remap must be versioned with selected-contract and session recertification."
+}

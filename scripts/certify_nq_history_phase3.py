@@ -15,6 +15,7 @@ from zoneinfo import ZoneInfo
 
 import pyarrow as pa
 import pyarrow.parquet as pq
+from backtester.nq_research import validate_strict_metadata
 from dateutil.easter import easter
 from pandas.tseries.holiday import USFederalHolidayCalendar
 
@@ -156,7 +157,9 @@ def segments_for(allowed: set[date], observed_order: list[date]) -> dict[date, i
     return result
 
 
-def write_research_dataset(path: Path, allowed: dict[date, str], tiers: dict[date, str], segments: dict[date, int]) -> int:
+def write_research_dataset(path: Path, allowed: dict[date, str], tiers: dict[date, str], segments: dict[date, int], *, strict=False) -> int:
+    if strict and any(tiers.get(day) != "A" for day in allowed):
+        raise ValueError("Strict dataset selection contains a non-Tier A session")
     source = pq.ParquetFile(OLD / "nq_outright_ohlcv_1m.parquet")
     writer = None
     count = 0
@@ -179,6 +182,15 @@ def write_research_dataset(path: Path, allowed: dict[date, str], tiers: dict[dat
     if writer is None:
         raise ValueError("Empty research dataset")
     writer.close()
+    if strict:
+        allowlist = {day: (contract, "A", VERSION, segments[day]) for day, contract in allowed.items()}
+        def metadata_rows():
+            parquet = pq.ParquetFile(path)
+            columns = ["trading_date", "contract", "quality_tier", "certification_version", "research_segment_id"]
+            for batch in parquet.iter_batches(batch_size=100_000, columns=columns):
+                yield from zip(*(batch.column(i).to_pylist() for i in range(len(columns))))
+        if validate_strict_metadata(metadata_rows(), allowlist, certification_version=VERSION) != count:
+            raise ValueError("Strict dataset row count changed during readback")
     return count
 
 
@@ -298,7 +310,7 @@ def main() -> None:
     write_csv(OUT / "exploratory-research-allowlist.csv", [r for r in sessions if r["tier"] in ("A", "B")], list(sessions[0]))
     write_csv(OUT / "missing-date-candidates.csv", missing_candidates,
               list(missing_candidates[0]) if missing_candidates else ["trading_date", "calendar_state", "reason_code", "authoritative_expected", "source_ids"])
-    strict_rows = write_research_dataset(OUT / "strict-certified.parquet", strict, tiers, strict_segments)
+    strict_rows = write_research_dataset(OUT / "strict-certified.parquet", strict, tiers, strict_segments, strict=True)
     exploratory_rows = write_research_dataset(OUT / "exploratory-research.parquet", exploratory, tiers, exploratory_segments)
     annual = []
     for year in range(first.year, last.year + 1):

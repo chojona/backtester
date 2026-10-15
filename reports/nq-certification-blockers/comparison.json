@@ -1,0 +1,44 @@
+{
+  "baseline_version": "nq-history-v3.0.0",
+  "decision_csv_sha256": "8f539c28a437f5e13266f15ad048cb11f87ccd51d13cdcaa3dac59eb8c23d40c",
+  "missing_candidates_csv_sha256": "0abecb50c6ee8801afbafab3b899aa5c77ae066938bbebdae3d417c4abcd4c53",
+  "tier_counts_before": {
+    "D": 2,
+    "C": 2858,
+    "B": 1336,
+    "A": 11
+  },
+  "tier_counts_after": {
+    "D": 2,
+    "C": 2858,
+    "B": 1336,
+    "A": 11
+  },
+  "strict_promotions": 0,
+  "longest_strict_segment_sessions": 10,
+  "longest_strict_segment_dates": [
+    "2026-09-14",
+    "2026-09-25"
+  ],
+  "reason_counts": {
+    "D_NO_PRIOR_SESSION_ROLL_BUFFER": 1,
+    "C_PRE2012_TRADE_DATE_REMAP_REQUIRED": 635,
+    "C_SPARSE_OR_OFF_SCHEDULE_TRADE_BARS": 159,
+    "C_HOLIDAY_OR_EARLY_CLOSE_UNVERIFIED": 489,
+    "C_CAUSAL_CONTRACT_EVIDENCE_INCOMPLETE": 1527,
+    "C_PROVIDER_DEGRADED_OR_METADATA_MISSING": 34,
+    "B_REGULAR_REGIME_FULL_ACTIVE_GRID": 1336,
+    "D_NONSESSION_PREOPEN_BAR": 1,
+    "C_CME_HOLIDAY_HOURS_NOT_CAPTURED": 14,
+    "A_SOURCE_REVIEWED_COMPLETE": 11
+  },
+  "unobserved_weekdays_inspected": 56,
+  "five_provider_gap_candidates": [
+    "2014-06-12",
+    "2014-06-13",
+    "2014-09-23",
+    "2014-09-24",
+    "2014-09-25"
+  ],
+  "interpretation": "This is an evidence audit, not a recertification. No absent OHLCV interval is classified as an exchange closure or provider loss solely from silence."
+}

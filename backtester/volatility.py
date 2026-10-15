@@ -11,6 +11,8 @@ import math
 from .data import Bar
 
 MINUTE = timedelta(minutes=1)
+BPV_ESTIMATOR_VERSION = "bpv-segment-v1.0.0"
+LEGACY_HISTORICAL_BPV_VERSION = "bpv-all-adjacent-v0.0.0"
 
 
 def log_return(previous, current):
@@ -52,6 +54,20 @@ def bipower_variation(returns):
     """
     r = _returns(returns)
     return math.pi / 2 * math.fsum(abs(a*b) for a, b in zip(r, r[1:])) if len(r) >= 2 else None
+
+
+def segmented_bipower_variation(returns, segments):
+    """Version 1 BPV: pair consecutive returns only within one calendar segment.
+
+    The caller must supply one segment label per regularly sampled return and
+    split any time gap or contract change before calling this scalar function.
+    """
+    r, labels = _returns(returns), tuple(segments)
+    if len(r) != len(labels):
+        raise ValueError("One calendar segment label per return required")
+    products = [abs(r[i - 1] * r[i]) for i in range(1, len(r))
+                if labels[i - 1] == labels[i]]
+    return math.pi / 2 * math.fsum(products) if products else None
 
 
 def threshold_bipower_variation(returns, squared_thresholds):
